@@ -6,6 +6,11 @@ repository: brainsesh/brainsesh.github.io
 
 url: https://brainsesh.github.io
 
-[![GitHub stars](https://img.shields.io/github/stars/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/brainsesh/brainsesh.github.io)](https://github.com/brainsesh/brainsesh.github.io/issues)
+author:
+  name: Lavanya Basavaraju
+  email: brainsesh@gmail.com
+  photo: /images/logo2.jpg
+
+# [![GitHub stars](https://img.shields.io/github/stars/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/stargazers)
+# [![GitHub forks](https://img.shields.io/github/forks/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/network/members)
+# [![GitHub issues](https://img.shields.io/github/issues/brainsesh/brainsesh.github.io)](https://github.com/brainsesh/brainsesh.github.io/issues)
