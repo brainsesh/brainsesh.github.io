@@ -23,22 +23,11 @@ Explore a collection of informal demonstrations of technical experiments.
 
 #### Conversational Assistant
 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
-2. **[The Art of Brainstorming](https:/brainsesh.github.io/docs/the-art-of-brainstorming/index.html)** – Unlocking creativity through collaboration.
+
 ---
 
 ## Titbits
 Explore a collection of short blogs that spark curiosity and inspire thought in Artificial Intelligence (AI), Applied Economics, Mathematics, and General Philosophy.
-
-#### Artificial Intelligence (AI) 
-1. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
-2. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
-
-#### Applied Economics 
-1. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
-
-#### Mathematics 
-1. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
-2. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
 
 #### General Philosophy 
 1. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
