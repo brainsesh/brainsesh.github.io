@@ -1,7 +1,22 @@
 # Site settings
 theme: jekyll-theme-minimal
 title: brainsesh
-description: A space dedicated to thinking, learning, and intellectual curiosity.
+description: >
+  A space dedicated to thinking, learning, and intellectual curiosity.
+  
+  [![GitHub stars](https://img.shields.io/github/stars/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/stargazers)
+  [![GitHub forks](https://img.shields.io/github/forks/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/network/members)
+  [![GitHub issues](https://img.shields.io/github/issues/brainsesh/brainsesh.github.io)](https://github.com/brainsesh/brainsesh.github.io/issues)
+  
+  ### Contributors
+  **Lavanya Basavaraju**  
+  Founder of brainsesh  
+  ![Lavanya](/images/logo2.jpg){:height="100px" width="100px"}
+  
+  **Second Contributor**  
+  Role description  
+  ![Second Contributor](/path/to/photo.jpg){:height="100px" width="100px"}
+
 repository: brainsesh/brainsesh.github.io
 url: https://brainsesh.github.io
 baseurl: ""
@@ -12,32 +27,8 @@ highlighter: rouge
 permalink: pretty
 show_downloads: false
 
-# Authors/Contributors
-authors:
-  - name: LB
-    photo: /images/logo2.jpg
-    bio: Founder and Contributor for brainsesh
-  - name: RB
-    photo: /images/logo2.jpg
-    bio: Founder and Contributor for brainsesh
-
-# Left sidebar settings
-sidebar:
-  show_github_stats: true
-  github_stats:
-    stars: true
-    forks: true
-    issues: true
-  
 # Google Analytics
 google_analytics: # your Google Analytics tracking ID here
 
-# Social links
-social:
-  github: brainsesh/brainsesh.github.io
-  # linkedin: # your LinkedIn username
-
-# Display settings
+# Logo for sidebar
 logo: /images/logo2.jpg
-show_header: true
-show_footer: true

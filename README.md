@@ -29,7 +29,7 @@ Explore a collection of informal demonstrations of technical experiments.
 Explore a collection of short blogs that spark curiosity and inspire thought in Artificial Intelligence (AI), Applied Economics, Mathematics, and General Philosophy.
 
 #### General Philosophy 
-1. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
+1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
 
 ---
 
