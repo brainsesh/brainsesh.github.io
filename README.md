@@ -2,12 +2,14 @@
 
 <!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Contact**](#contact) -->
 
-<div style="font-size:1.5rem; font-weight:bold;">
+<div style="font-size:1.5rem; font-weight:bold; margin-bottom: 1.5rem;">
   <a href="#techdrop">Techdrop</a> &#124;
   <a href="#tidbits">Tidbits</a> &#124;
   <a href="#contact">Contact</a>
 </div>
 
+<br>
+<br>
 Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
 
 <div style="text-align: center;">
