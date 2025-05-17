@@ -11,7 +11,7 @@ baseurl: ""
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
-show_downloads: false
+show_downloads: true
 
 # Google Analytics
 # google_analytics: # your Google Analytics tracking ID here

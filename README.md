@@ -1,6 +1,10 @@
-# brainsesh
+<!-- # brainsesh -->
 
-[**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Contact**](#contact)
+<!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Contact**](#contact) -->
+
+<div style="font-size:1.35rem;">
+  [**Techdrop**](#techdrop) &#124; [**Tidbits**](#tidbits) &#124; [**Contact**](#contact)
+</div>
 
 Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
 
