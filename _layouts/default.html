@@ -11,18 +11,18 @@
   <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 </head>
 <body>
-  <header class="site-header" style="display:flex;justify-content:space-between;align-items:center;">
-    <div class="site-title">
+  <header class="site-header" style="text-align: center; padding: 2rem 0;">
+    <div class="site-title" style="display: flex; flex-direction: column; align-items: center;">
       {%- if site.logo -%}
-        <img src="{{ site.logo }}" alt="Logo" style="height:40px;margin-right:10px;">
+        <img src="{{ site.logo }}" alt="Logo" style="height:60px; margin-bottom: 0.5rem;">
       {%- endif -%}
-      <span>{{ site.title }}</span>
+      <span style="font-size: 2rem; font-weight: bold;">{{ site.title }}</span>
+      <span class="contact-email" style="margin-top: 0.5rem;">
+        <a href="mailto:brainsesh@gmail.com" style="color: #6c63ff; text-decoration: none; font-size: 1.1rem;">brainsesh@gmail.com</a>
+      </span>
     </div>
-    <span class="contact-email">
-      <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a>
-    </span>
   </header>
-  <main class="site-content">
+  <main class="site-content" style="max-width: 700px; margin: 0 auto; padding: 2rem 1rem;">
     {{ content }}
   </main>
 </body>

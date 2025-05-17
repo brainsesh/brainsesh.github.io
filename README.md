@@ -23,7 +23,6 @@ Explore a collection of informal demonstrations of technical experiments.
 #### Conversational Assistant
 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
 
-[<span style="color:#b57edc;">⬆</span> Back to top](#brainsesh)
 ---
 
 ## Titbits
@@ -31,9 +30,6 @@ Explore a collection of short blogs that spark curiosity and inspire thought in 
 
 #### General Philosophy 
 1. **[The Art of Brainstorming](https://brainsesh.github.io/brainsesh.io/docs/the-art-of-brainstorming.html)** – Unlocking creativity through collaboration.
-
-[<span style="color:gold;">🔗</span> Go to Sesh](#sesh) 
-[<span style="color:#b57edc;">⬆</span> Back to top](#brainsesh)
 
 ---
 
