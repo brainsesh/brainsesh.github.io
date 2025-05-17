@@ -1,11 +1,14 @@
 # brainsesh
-Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**.
-![Brainsesh Logo](./images/logo.jpg) 
 
-Here, **creativity meets intellect**, fostering an environment for,
+Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
+
+<img src="./images/logo.jpg" alt="Brainsesh Logo" width="150"/>
+
+This space is created to foster an environment for,
 - **Exploring ideas**
-- **Meaningful engagement**
+- **Meaningful engagement** and 
 - **Inspiring conversations**
+
 Whether you're looking to explore intellectual curiosity, spark new thoughts or collaborate on projects **brainsesh** is your go-to space.
 
 ---
