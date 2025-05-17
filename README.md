@@ -8,12 +8,7 @@ Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and *
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
 
-This space is created to foster an environment for,
-- **Exploring ideas**
-- **Meaningful engagement** and 
-- **Inspiring conversations**
-
-Whether you're looking to explore intellectual curiosity, spark new thoughts or collaborate on projects **brainsesh** is your go-to space.
+This space is created to share learnings, thought experiments, and personal blogs from contributors. Whether you're looking to explore intellectual curiosity, spark new thoughts or have meaningful technical conversations **brainsesh** is your go-to space.
 
 ---
 
@@ -30,6 +25,16 @@ Explore a collection of short blogs that spark curiosity and inspire thought in 
 
 #### General Philosophy 
 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
+
+---
+
+## Disclaimer
+
+The content expressed on this website, including but not limited to articles, blog posts, comments, and other materials, are solely the personal opinions of the contributors and do not represent or reflect the views, positions, or policies of their respective employers, affiliated organizations, or the industries in which they work.
+
+Contributors share their thoughts based on personal experience, experiments, and perspective. Any information provided should not be construed as professional advice or as an official statement from any organization with which contributors may be associated.
+
+All content is provided for informational purposes only. Readers should exercise their own judgment when considering the views and opinions presented here.
 
 ---
 
