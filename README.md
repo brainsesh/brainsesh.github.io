@@ -1,7 +1,8 @@
 # brainsesh
 
-Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
+[**Sesh**](#sesh) | [**Titbits**](#titbits) | [**Follow/Contact**](#followcontact)
 
+Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
 
 <div style="text-align: center;">
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
