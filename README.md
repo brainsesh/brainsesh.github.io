@@ -1,6 +1,6 @@
 # brainsesh
 
-[**Sesh**](#sesh) | [**Titbits**](#titbits) | [**Follow/Contact**](#followcontact)
+[**Sesh**](#sesh) | [**Titbits**](#titbits) | [**Contact**](#contact)
 
 Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
 
@@ -33,7 +33,7 @@ Explore a collection of short blogs that spark curiosity and inspire thought in 
 
 ---
 
-## Follow/Contact
+## Contact
 Be part of **creative and intellectual engagement**, where every blog, experiment, and thought is a **learning session** and an opportunity to **elevate ideas**.
 
 For more information or to get involved, feel free to reach out at **[brainsesh@gmail.com](mailto:brainsesh@gmail.com)**.
