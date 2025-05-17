@@ -1,22 +1,8 @@
 # Site settings
 theme: jekyll-theme-minimal
 title: brainsesh
-description: >
-  A space dedicated to thinking, learning, and intellectual curiosity.
-  
-  [![GitHub stars](https://img.shields.io/github/stars/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/stargazers)
-  [![GitHub forks](https://img.shields.io/github/forks/brainsesh/brainsesh.github.io?style=social)](https://github.com/brainsesh/brainsesh.github.io/network/members)
-  [![GitHub issues](https://img.shields.io/github/issues/brainsesh/brainsesh.github.io)](https://github.com/brainsesh/brainsesh.github.io/issues)
-  
-  ### Contributors
-  **LB**  
-  Founder and Contributor  
-  ![LB](/images/logo2.jpg){:height="100px" width="100px"}
-  
-  **RB**  
-  Founder and Contributor
-  ![RB](/images/logo2.jpg){:height="100px" width="100px"}
-
+description: A space dedicated to thinking, learning, and intellectual curiosity.
+# logo: /images/logo2.jpg
 repository: brainsesh/brainsesh.github.io
 url: https://brainsesh.github.io
 baseurl: ""
@@ -29,6 +15,3 @@ show_downloads: false
 
 # Google Analytics
 # google_analytics: # your Google Analytics tracking ID here
-
-# Logo for sidebar
-# logo: /images/logo2.jpg
