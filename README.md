@@ -2,7 +2,10 @@
 
 Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
 
-<img src="./images/logo.jpg" alt="Brainsesh Logo" width="150"/>
+
+<div style="text-align: center;">
+  <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
+</div>
 
 This space is created to foster an environment for,
 - **Exploring ideas**

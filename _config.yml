@@ -1,0 +1,26 @@
+# Basic configuration for GitHub Pages Jekyll site to remove "This site is open source. Improve this page" footer
+
+title: brainsesh
+theme: minima
+
+# Disable GitHub Pages footer links
+show_downloads: false
+github:
+  is_project_page: false
+
+# Remove "Improve this page" links if using a theme that supports it
+improve_this_page: false
+show_edit_on_github: false
+edit_on_github: false
+
+# If using Just the Docs or similar, disable edit links
+# just_the_docs:
+#   edit_mode: false
+#   show_edit_link: false
+
+# If using Minimal Mistakes, disable edit links
+# minimal_mistakes_skin: "default"
+# repository: ""
+# edit_on_github: false
+
+# Add any other theme-specific options here as needed
