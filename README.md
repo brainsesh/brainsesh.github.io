@@ -2,8 +2,10 @@
 
 <!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Contact**](#contact) -->
 
-<div style="font-size:1.35rem;">
-  [**Techdrop**](#techdrop) &#124; [**Tidbits**](#tidbits) &#124; [**Contact**](#contact)
+<div style="font-size:1.5rem; font-weight:bold;">
+  <a href="#techdrop">Techdrop</a> &#124;
+  <a href="#tidbits">Tidbits</a> &#124;
+  <a href="#contact">Contact</a>
 </div>
 
 Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
