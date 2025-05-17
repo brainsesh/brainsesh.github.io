@@ -1,6 +1,6 @@
 # brainsesh
 
-[**Sesh**](#sesh) | [**Titbits**](#titbits) | [**Contact**](#contact)
+[**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Contact**](#contact)
 
 Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
 
@@ -17,7 +17,7 @@ Whether you're looking to explore intellectual curiosity, spark new thoughts or 
 
 ---
 
-## Sesh
+## Techdrop
 Explore a collection of informal demonstrations of technical experiments.
 
 #### Conversational Assistant
@@ -25,7 +25,7 @@ Explore a collection of informal demonstrations of technical experiments.
 
 ---
 
-## Titbits
+## Tidbits
 Explore a collection of short blogs that spark curiosity and inspire thought in Artificial Intelligence (AI), Applied Economics, Mathematics, and General Philosophy.
 
 #### General Philosophy 
