@@ -20,8 +20,8 @@ Whether you're looking to explore intellectual curiosity, spark new thoughts or 
 ## Techdrop
 Explore a collection of informal demonstrations of technical experiments.
 
-#### Conversational Assistant
-1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
+<!-- #### Conversational Assistant -->
+1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Conversational Assistant</a> – Interview with a language model to discover technical topics.
 
 ---
 
