@@ -9,13 +9,13 @@ description: >
   [![GitHub issues](https://img.shields.io/github/issues/brainsesh/brainsesh.github.io)](https://github.com/brainsesh/brainsesh.github.io/issues)
   
   ### Contributors
-  **Lavanya Basavaraju**  
-  Founder of brainsesh  
-  ![Lavanya](/images/logo2.jpg){:height="100px" width="100px"}
+  **LB**  
+  Founder and Contributor  
+  ![LB](/images/logo2.jpg){:height="100px" width="100px"}
   
-  **Second Contributor**  
-  Role description  
-  ![Second Contributor](/path/to/photo.jpg){:height="100px" width="100px"}
+  **RB**  
+  Founder and Contributor
+  ![RB](/images/logo2.jpg){:height="100px" width="100px"}
 
 repository: brainsesh/brainsesh.github.io
 url: https://brainsesh.github.io
@@ -28,7 +28,7 @@ permalink: pretty
 show_downloads: false
 
 # Google Analytics
-google_analytics: # your Google Analytics tracking ID here
+# google_analytics: # your Google Analytics tracking ID here
 
 # Logo for sidebar
 logo: /images/logo2.jpg
