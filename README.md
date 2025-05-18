@@ -54,7 +54,7 @@ If you have any questions and/or feedback, feel free to reach out at **[brainses
 ---
 
 <div align="center" style="font-size: 0.95rem;">
-  &copy; The goal is simple. Better than yesterday. 
+  The goal is simple. Better than yesterday. 
 </div>
 
 
