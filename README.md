@@ -52,3 +52,9 @@ All content is provided for informational purposes only. Readers should exercise
 If you have any questions and/or feedback, feel free to reach out at **[brainsesh@gmail.com](mailto:brainsesh@gmail.com)**.
 
 ---
+
+<div align="center" style="font-size: 0.95rem;">
+  &copy; The goal is simple. Better than yesterday. 
+</div>
+
+
