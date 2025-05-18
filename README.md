@@ -1,6 +1,6 @@
 <!-- # brainsesh -->
 
-Welcome to **brainsesh**, a space dedicated to **thinking**, **learning**, and **intellectual work**!
+Welcome to **brainsesh**, a space dedicated to **growth**, **reflection**, and **inspiration**!
 
 [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Tutorials**](#tutorials)
 
