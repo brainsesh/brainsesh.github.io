@@ -53,7 +53,7 @@ If you have any questions and/or feedback, feel free to reach out at **[brainses
 
 ---
 
-<div align="center" style="font-size: 0.95rem;">
+<div align="left" style="font-size: 0.8rem;">
   The goal is simple. Better than yesterday. 
 </div>
 
