@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning to Think - Decoding DualFormer</title>
+    <title>Learning to Think - Decoding Dualformer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-    <h1>Learning to Think - Decoding DualFormer</h1>
+    <h1>Learning to Think - Decoding Dualformer</h1>
     <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
 
     <p>In this article, I talk about my understanding, key takeaways and personal impressions on the <a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">“Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces”</a> paper released by meta in oct 2024.</p>
@@ -57,7 +57,7 @@
 
     <p>So, let’s start. </p>
 
-    <h2>The process and the philosophy of thinking:    </h2>
+    <h3>1. The process and the philosophy of thinking    </h2>
 
     <p>Well, a great deal of civilization is a product of thinking. But if we were to understand the process of thinking, dual process theory is one of the key concepts. First explained by Wason and Evans in 1974 and popularized by Kahneman in 2017 (Thinking Fast and Slow), dual process theory proposes that human cognition operates through two distinct systems of thinking.</p>
     <ul>
@@ -66,7 +66,7 @@
     </ul>
 
     <div class="non-interactive-image">
-        <img src="system.jpg" alt="systems" title="Click to explore systems of thinking">
+        <img src="system.jpg" alt="systems" title="systems of thinking">
         <p><em>System 1 vs System 2 Thinking</em></p>
     </div>
 
@@ -76,7 +76,7 @@
 
     <p>Some decisions, like what you would like to eat for breakfast, might not require you to be so accurate as the risk of making that decision could be low in most situations excluding people with serious health concerns. In that case System 1 thinking is all we need. But say decisions like where would one go to school for a graduate degree or is it the right time to buy a home for a young family, where the risk involved is much higher would require more thought, information and analysis. Sometime this does not just need one person’s System 2 thinking but multiple trusted individuals and their System 2 thinking to make decisions.</p>
 
-    <h2>Ideas explored in the paper:   </h2>
+    <h3>2. Ideas explored in the paper  </h2>
 
     <p>Dualformer is a novel transformer-based architecture that integrates both fast and slow reasoning modes into a single model, inspired by this dual process theory. The model addresses a fundamental trade-off in AI reasoning systems: fast models are computationally efficient but less accurate, while slow models that generate detailed reasoning traces are more accurate but computationally expensive.</p>
 
@@ -89,7 +89,7 @@
     </ul>
 
     <div class="non-interactive-image">
-        <img src="model.jpg" alt="model" title="Click to explore model architecture" style="width: 800px; height: auto;">
+        <img src="model.jpg" alt="model" title="model architecture" style="width: 800px; height: auto;">
     </div>
 
     <p>At this point, It is okay to not fully understand A* algorithm. We will get to that in another blog. But briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. It works by maintaining two lists: a "create" list of  locations it might explore next, and a "close" list of locations it has already checked. For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like Manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.</p>
@@ -102,7 +102,7 @@
     </ul>
 
     <div class="non-interactive-image">
-        <img src="mode.jpg" alt="modes" title="Click to explore inference modes" style="width: auto; height: 200px;">
+        <img src="mode.jpg" alt="modes" title="inference modes" style="width: auto; height: 200px;">
         <p><em>Inference Modes of Dualformer</em></p>
     </div>
 
@@ -111,12 +111,25 @@
     <p>Dualformer solves this by creating a unified system that can dynamically adjust its reasoning depth based on task requirements or user preferences. This mirrors human cognition, where we unconsciously switch between intuitive quick decisions (System 1) and deliberate analytical thinking (System 2) depending on the situation's complexity and stakes.</p>
     <p>The approach also addresses practical deployment concerns: a single model that can operate in multiple modes is more efficient than maintaining separate systems, while the structured dropping reduces training time by shortening input sequences.</p>
 
+    <h3>3. Experiments and Evidence </h3>
+
+    <p>The authors conducted comprehensive experiments across pathfinding tasks and mathematical reasoning to validate Dualformer's effectiveness. For pathfinding, they used maze navigation (15×15 to 30×30) and Sokoban puzzles with 100k training examples from A* search traces. Results demonstrated substantial improvements: Fast Mode achieved 80% optimal solutions on 30×30 mazes versus 30% for solution-only baselines (2.67× improvement), while Slow Mode reached 97.6% optimal rate using 45.5% fewer reasoning steps than complete-trace baselines. Auto Mode delivered 96.6% optimal performance with 59.9% fewer steps than Searchformer, and generated significantly more diverse valid solutions (18.23 vs 1.86 unique paths per task).</p>
+    
+    <p>Mathematical reasoning experiments fine-tuned Llama-3-8B and Mistral-7B models on the Aug-MATH dataset, showing consistent improvements across both architectures. Mistral-7B with trace dropping achieved 18.6% accuracy versus 16.9% for the baseline (10% relative improvement), while maintaining shorter reasoning traces. Performance degraded gracefully as dropping probability increased, indicating robust controllability.</p>
+
+    <p>Rigorous ablation studies compared Dualformer against naive mixing approaches and individual dropping strategy components, consistently demonstrating the superiority of the hierarchical dropping structure. Evaluation used comprehensive metrics including success rates across multiple samples, solution optimality measures, diversity counts, and computational efficiency indicators, providing strong evidence for both the method's effectiveness and its practical advantages in balancing reasoning quality with computational cost.</p>
+
+    <div class="non-interactive-image">
+        <img src="maze.jpg" alt="maze" title="experiments" style="width: 600px; height: auto;">
+        <p><em>Inference Modes of Dualformer</em></p>
+    </div>
+
+    <h3>4. Final Thoughts</h3>
+
+    <p>Dualformer represents a promising advancement in making AI reasoning systems more adaptable and efficient. The approach demonstrates significant potential across multiple dimensions: it could scale to larger models while reducing computational costs, enable deployment in resource-constrained environments, and facilitate better human-AI collaboration through controllable reasoning depth. The hierarchical structure also opens possibilities for curriculum learning approaches that gradually build reasoning complexity during training.</p>
+    <p>However, several limitations constrain its immediate widespread adoption. The method's dependence on well-structured reasoning traces and domain-specific dropping strategies limits its applicability to arbitrary reasoning tasks. Testing has been confined to relatively small models and specific domains (maze navigation, puzzle-solving, and mathematical reasoning), leaving questions about scalability to larger language models and diverse reasoning challenges unanswered. The need for careful tuning of dropping probabilities suggests the approach may not achieve full domain-agnostic generalization.</p>
+    <p>Despite these constraints, Dualformer marks a significant step toward more flexible reasoning systems that can dynamically balance computational depth with task requirements. This adaptive capability could fundamentally transform how we deploy AI systems that must navigate the perpetual trade-off between speed and accuracy, particularly in real-world applications where both efficiency and reasoning quality are critical.</p>
 
 
-
-    <h2>Conclusion</h2>
-    <p>The art of brainstorming lies in its ability to bring people together, foster creativity, and generate solutions. Whether you're tackling a complex problem or simply exploring new ideas, brainstorming is an invaluable skill that can lead to amazing results.</p>
-
-    <p>Ready to start your next brainstorming session? Gather your team, set the stage, and let the ideas flow!</p>
 </body>
 </html>
