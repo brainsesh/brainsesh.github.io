@@ -2,7 +2,7 @@
 
 Welcome to **brainsesh**, a space dedicated to **growth**, **reflection**, and **inspiration**!
 
-[**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Tutorials**](#tutorials)
+<!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Tutorials**](#tutorials) -->
 
 <div style="text-align: center;">
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
@@ -12,30 +12,31 @@ This space is created to share learnings, thought experiments, and personal blog
 
 ---
 
-## Techdrop
-Explore a collection of informal demonstrations of technical experiments.
+<!-- ## Techdrop -->
+<!-- Explore a collection of informal demonstrations of technical experiments. -->
 
 <!-- #### Conversational Assistant -->
-1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Conversational Assistant</a> – Interview with a language model to discover technical topics.
+<!-- 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Conversational Assistant</a> – Interview with a language model to discover technical topics. -->
 
----
+<!-- --- -->
 
 ## Tidbits
 Explore a collection of short blogs that spark curiosity and inspire thought in Artificial Intelligence (AI), Applied Economics, Mathematics, and Behavioral Sciences.
 
 #### Behavioral Sciences 
 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
+2. <a href="./docs/the-art-of-brainstorming/article.md" target="_blank">The Art of Brainstorming</a> – Unlocking creativity through collaboration.
 
 ---
 
-## Tutorials
-Explore a collection of tutorials that provide concise overviews of diverse topics. From fundamental principles to specialized techniques, these tutorials can serve as accessible entry points for expanding knowledge and skillset.
+<!-- ## Tutorials -->
+<!-- Explore a collection of tutorials that provide concise overviews of diverse topics. From fundamental principles to specialized techniques, these tutorials can serve as accessible entry points for expanding knowledge and skillset. -->
 
 <!-- 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Linear Algebra</a> – Hidden Language Behind Modern Technology
 2. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Neural Networks</a> – Where Mathematics Mimics the Mind
 3. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Language Models</a> – Digital Minds Reshaping How We Communicate -->
 
----
+<!-- --- -->
 
 ## Disclaimer
 
