@@ -17,3 +17,21 @@
   border-radius: 25%;
   border: 1px solid #267CB9;
 }
+
+.interactive-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.interactive-image img {
+  width: 300px; // Set a fixed width
+  height: auto; // Maintain aspect ratio
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: block; // Ensures the image is centered
+  margin: 0 auto; // Centers the image horizontally
+}
+
+.interactive-image img:hover {
+  transform: scale(1.1);
+}
