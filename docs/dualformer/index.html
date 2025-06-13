@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning to think - Decoding DualFormer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        .interactive-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .interactive-image img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .interactive-image img:hover {
+            transform: scale(1.1);
+        }
+        .highlight {
+            background-color: #f0f8ff;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learning to think - Decoding DualFormer</h1>
+    <!-- <p>In this article, I talk about my understanding, key takeaways and personal impressions on the “Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces” paper released by meta in oct 2024. Here is the link to the paper.</p> -->
+    <p>In this article, I talk about my understanding, key takeaways and personal impressions on the “Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces” paper released by meta in oct 2024. Here is the <a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">paper</a>.</p>
+
+    <h2>Why is this paper interesting? </h2>
+    <p>A lot of focus today in the space of Artificial Intelligence (AI) is about a single model that can think and reason at par with an average human being or better than an average human being. There is substantial curiosity and active research today around how the large language models can think, reason, and act with the help of agentic frameworks. We will not get into that here. We will talk about <span class="highlight">thinking </span>. The process of thinking, the philosophy of thinking, and the reproducibility of thinking. The last one is where this paper comes in!  </p>
+    
+    <p>So, let’s start. </p>
+
+    <h2>The process and the philosophy of thinking:    </h2>
+
+    <p>Well, a great deal of civilization is a product of thinking. But if we were to understand the process of thinking, dual process theory is one of the key concepts. First explained by Wason and Evans in 1974 and popularized by Kahneman in 2017 (Thinking Fast and Slow), dual process theory proposes that human cognition operates through two distinct systems of thinking.</p>
+    <ul>
+        <li><strong>System 1:</strong> fast, automatic and intuitive </li>
+        <li><strong>System 2:</strong> slow, deliberate and effortful </li>
+    </ul>
+
+    <p>Essentially, System 1 relies on mental shortcuts easily at disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning and analysis and typically comes into play when called to make more careful evaluation. </p>
+
+    <p>And there is a beautiful play of information, speed and accuracy that becomes essential to look at as we understand this dual process theory for thinking. You always have some information to make a decision, even it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, which System 2 might just wait a little longer to collect more information if necessary. </p>
+
+    <p>Some decisions (like what you would like to eat for breakfast) might not require you to be so accurate (risk of making that decision could be low in most situations excluding people with serious health concerns), in that case System 1 thinking is all we need. But say decisions like where would one go to school for a graduate degree or is it the right time to buy a home for a young family, where the risk involved is much higher would require more thought, information and analysis. Sometime this does not just need one person’s System 2 thinking but multiple trusted individuals and their System 2 thinking to make decisions.</p>
+
+    <h2>Ideas explored in the paper:   </h2>
+
+    <p>Dualformer is a novel transformer-based architecture that integrates both fast and slow reasoning modes into a single model, inspired by this dual process theory. The model addresses a fundamental trade-off in AI reasoning systems: fast models are computationally efficient but less accurate, while slow models that generate detailed reasoning traces are more accurate but computationally expensive.</p>
+
+    <p>The core innovation lies in structured trace dropping during training. Instead of training separate models for fast and slow reasoning, Dualformer learns from randomized reasoning traces where different parts are systematically dropped according to four hierarchical levels:<p>
+    <ul>
+        <li><strong>Level 1:</strong> Drop "close" clauses from A* search (paper reference) traces</li>
+        <li><strong>Level 2:</strong> Additionally drop cost information from remaining clauses</li>
+        <li><strong>Level 3:</strong> Further drop 30% of "create" clauses randomly</li>
+        <li><strong>Level 4:</strong> Drop the entire reasoning trace, keeping only the final solution</li>
+    </ul>
+    <p>At this point, It is okay to not fully understand A* algorithm. We will get to that in another blog. But briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. It works by maintaining two lists: a "create" list of  locations it might explore next, and a "close" list of locations it has already checked. For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like Manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.</p>
+
+    <p>During training, each example randomly selects a dropping strategy from these levels, enabling the model to learn shortcuts in reasoning while maintaining the ability to generate full traces when needed. At inference time, Dualformer can operate in three modes:</p>
+    <ul>
+        <li><strong>1. Fast mode:</strong> Outputs solutions directly without reasoning steps</li>
+        <li><strong>2. Slow mode:</strong> Generates complete reasoning traces plus solutions</li>
+        <li><strong>3. Auto mode:</strong> Automatically decides which approach to use</li>
+    </ul>
+
+
+    <p>Current reasoning systems face a critical limitation: they must choose between speed and accuracy. Models trained only on complete reasoning traces (like Searchformer) are slow and computationally expensive, while solution-only models are fast but significantly less accurate. Previous approaches requiring separate models, distillation, or meta-controllers add complexity and computational overhead.</p>
+    <p>Dualformer solves this by creating a unified system that can dynamically adjust its reasoning depth based on task requirements or user preferences. This mirrors human cognition, where we unconsciously switch between intuitive quick decisions (System 1) and deliberate analytical thinking (System 2) depending on the situation's complexity and stakes.</p>
+    <p>The approach also addresses practical deployment concerns: a single model that can operate in multiple modes is more efficient than maintaining separate systems, while the structured dropping reduces training time by shortening input sequences.</p>
+
+
+
+    <div class="interactive-image">
+        <img src="random.jpg" alt="Brainstorming Session" title="Click to explore brainstorming tips">
+        <p><em>Hover over the image for a closer look!</em></p>
+    </div>
+
+    <h2>Tips for Effective Brainstorming</h2>
+    <ul>
+        <li><strong>Set a clear goal:</strong> Define the problem or topic you want to brainstorm about.</li>
+        <li><strong>Encourage wild ideas:</strong> Don't limit creativity; even the craziest ideas can spark something great.</li>
+        <li><strong>Build on others' ideas:</strong> Collaboration can lead to breakthroughs.</li>
+        <li><strong>Stay focused:</strong> Keep the discussion on track to avoid losing momentum.</li>
+        <li><strong>Use visual aids:</strong> Diagrams, charts, and images can help clarify and inspire ideas.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>The art of brainstorming lies in its ability to bring people together, foster creativity, and generate solutions. Whether you're tackling a complex problem or simply exploring new ideas, brainstorming is an invaluable skill that can lead to amazing results.</p>
+
+    <p>Ready to start your next brainstorming session? Gather your team, set the stage, and let the ideas flow!</p>
+</body>
+</html>
