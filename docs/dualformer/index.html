@@ -19,7 +19,7 @@
             margin: 20px 0;
         }
         .interactive-image img {
-            width: 300px; 
+            width: 450px; 
             height: auto; 
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -27,7 +27,7 @@
             margin: 0 auto; 
         }
         .interactive-image img:hover {
-            transform: scale(1.5);
+            transform: scale(2.5);
         }
         .highlight {
             background-color: #f0f8ff;
@@ -56,7 +56,7 @@
 
     <div class="interactive-image">
         <img src="system.jpg" alt="systems" title="Click to explore systems of thinking">
-        <p><em>Hover over the image for a closer look!</em></p>
+        <p><em>System 1 vs System 2 Thinking</em></p>
     </div>
 
     <p>Essentially, System 1 relies on mental shortcuts easily at disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning and analysis and typically comes into play when called to make more careful evaluation. </p>
@@ -76,6 +76,11 @@
         <li><strong>Level 3:</strong> Further drop 30% of "create" clauses randomly</li>
         <li><strong>Level 4:</strong> Drop the entire reasoning trace, keeping only the final solution</li>
     </ul>
+
+    <div class="interactive-image">
+        <img src="model.jpg" alt="model" title="Click to explore model architecture">
+    </div>
+
     <p>At this point, It is okay to not fully understand A* algorithm. We will get to that in another blog. But briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. It works by maintaining two lists: a "create" list of  locations it might explore next, and a "close" list of locations it has already checked. For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like Manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.</p>
 
     <p>During training, each example randomly selects a dropping strategy from these levels, enabling the model to learn shortcuts in reasoning while maintaining the ability to generate full traces when needed. At inference time, Dualformer can operate in three modes:</p>
@@ -84,6 +89,11 @@
         <li><strong>Slow mode:</strong> Generates complete reasoning traces plus solutions</li>
         <li><strong>Auto mode:</strong> Automatically decides which approach to use</li>
     </ul>
+
+    <div class="interactive-image">
+        <img src="model.jpg" alt="modes" title="Click to explore inference modes">
+        <p><em>Inference Modes of Dualformer</em></p>
+    </div>
 
 
     <p>Current reasoning systems face a critical limitation: they must choose between speed and accuracy. Models trained only on complete reasoning traces (like Searchformer) are slow and computationally expensive, while solution-only models are fast but significantly less accurate. Previous approaches requiring separate models, distillation, or meta-controllers add complexity and computational overhead.</p>
