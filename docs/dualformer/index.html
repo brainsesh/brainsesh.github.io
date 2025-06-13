@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning to think - Decoding DualFormer</title>
+    <title>Learning to Think - Decoding DualFormer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,6 +29,16 @@
         .interactive-image img:hover {
             transform: scale(2.5);
         }
+        .non-interactive-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .non-interactive-image img {
+            width: 450px; /* Fixed width */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Ensures the image is centered */
+            margin: 0 auto; /* Centers the image horizontally */
+        }
         .highlight {
             background-color: #f0f8ff;
             padding: 5px;
@@ -37,8 +47,8 @@
     </style>
 </head>
 <body>
-    <h1>Learning to think - Decoding DualFormer</h1>
-    <!-- <p>In this article, I talk about my understanding, key takeaways and personal impressions on the “Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces” paper released by meta in oct 2024. Here is the link to the paper.</p> -->
+    <h1>Learning to Think - Decoding DualFormer</h1>
+    
     <p>In this article, I talk about my understanding, key takeaways and personal impressions on the “Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces” paper released by meta in oct 2024. Here is the <a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">paper</a>.</p>
 
     <h2>Why is this paper interesting? </h2>
@@ -54,7 +64,7 @@
         <li><strong>System 2:</strong> slow, deliberate and effortful </li>
     </ul>
 
-    <div class="interactive-image">
+    <div class="non-interactive-image">
         <img src="system.jpg" alt="systems" title="Click to explore systems of thinking">
         <p><em>System 1 vs System 2 Thinking</em></p>
     </div>
@@ -77,8 +87,8 @@
         <li><strong>Level 4:</strong> Drop the entire reasoning trace, keeping only the final solution</li>
     </ul>
 
-    <div class="interactive-image">
-        <img src="model.jpg" alt="model" title="Click to explore model architecture">
+    <div class="non-interactive-image">
+        <img src="model.jpg" alt="model" title="Click to explore model architecture" style="width: 800px; height: auto;">
     </div>
 
     <p>At this point, It is okay to not fully understand A* algorithm. We will get to that in another blog. But briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. It works by maintaining two lists: a "create" list of  locations it might explore next, and a "close" list of locations it has already checked. For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like Manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.</p>
@@ -90,8 +100,8 @@
         <li><strong>Auto mode:</strong> Automatically decides which approach to use</li>
     </ul>
 
-    <div class="interactive-image">
-        <img src="model.jpg" alt="modes" title="Click to explore inference modes">
+    <div class="non-interactive-image">
+        <img src="mode.jpg" alt="modes" title="Click to explore inference modes">
         <p><em>Inference Modes of Dualformer</em></p>
     </div>
 
