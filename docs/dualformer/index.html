@@ -51,18 +51,17 @@
     <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
     <p style="font-size: 0.9em; line-height: 1.3;">
         <em><b>Author:</b> <a href="https://www.linkedin.com/in/lavanya-basavaraju/" target="_blank">Lavanya Basavaraju</a>; Published on June 14, 2025 </em><br>
-        <em><b>Research Partners:</b> Ryan Borowicz, Claude Sonnet 4, illuminate.google.com</em><br>
         <em>If you have any questions and/or feedback, feel free to reach out at <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a></em>
     </p>
 
     <p>In this article, I talk about my understanding, key takeaways and personal impressions on the <em><a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">“Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces”</a></em> paper released by FAIR at Meta on October 15, 2024.</p>
 
     <h3>Why is this paper interesting? </h3>
-    <p>A lot of focus today in the space of Artificial Intelligence (AI) is about a single model that can think and reason at par with an average human being or better than an average human being. There is substantial curiosity and active research around how the large language models can think, reason, and act with the help of agentic frameworks. We will not get into that here. We will talk about <em><b>thinking</b></em>. The process of thinking, the philosophy of thinking, and the reproducibility of thinking. The last one is where this paper comes in!  </p>
+    <p>A lot of focus today in the space of Artificial Intelligence (AI) is about a single model that can think and reason at par with an average human being or better than an average human being. There is substantial curiosity and active research around how the large language models can think, reason, and act with the help of agentic frameworks. We will not get into that here. We will talk about <em><b>thinking</b></em>. The process of thinking, the psychology of thinking, and the reproducibility of thinking. The last one is where this paper comes in!  </p>
 
     <p>So, let’s start. </p>
 
-    <h3>1. The process and the philosophy of thinking    </h2>
+    <h3>1. The process and the psychology of thinking    </h2>
 
     <p>Well, a great deal of civilization is a product of thinking. But if we were to understand the process of thinking, dual process theory is one of the key concepts. First explained by Wason and Evans in 1974 and popularized by Kahneman in 2017 (Thinking Fast and Slow), dual process theory proposes that human cognition operates through two distinct systems of thinking.</p>
     <ul>
@@ -133,22 +132,22 @@
 
     <p>Whether a model generates correct and optimal plans is measured using two metrics: <b>1-Solved-64</b> and <b>1-Optimal-64</b>. So 64 responses are randomly sampled from a trained model. Each response is parsed and evaluated regardless of the generated trace part. If any of the 64 plans is correct, i.e. is feasible and reaches the goal location, this task is labelled as success for the 1-Solved-64 metric. If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric. This is repeated for 1000 unseen evaluation tasks and report the average success rate. To investigate the robustness of each method, metrics 3-Solved-64 and 3-Optimal-64, where a task is labelled as success if at least 3 plans are correct or optimal are also reported.</p>
     
-    <p>The authors conducted comprehensive experiments across pathfinding tasks and mathematical reasoning to validate Dualformer's effectiveness. For pathfinding, they used maze navigation (15×15 to 30×30) and Sokoban puzzles with 100k training examples from A* search traces. Results demonstrated substantial improvements: Fast Mode achieved 80% optimal solutions on 30×30 mazes versus 30% for solution-only baselines (2.67× improvement), while Slow Mode reached 97.6% optimal rate using 45.5% fewer reasoning steps than complete-trace baselines. Auto Mode delivered 96.6% optimal performance with 59.9% fewer steps than Searchformer, and generated significantly more diverse valid solutions (18.23 vs 1.86 unique paths per task).</p>
+    <!-- <p>The authors conducted comprehensive experiments across pathfinding tasks and mathematical reasoning to validate Dualformer's effectiveness. For pathfinding, they used maze navigation (15×15 to 30×30) and Sokoban puzzles with 100k training examples from A* search traces. Results demonstrated substantial improvements: Fast Mode achieved 80% optimal solutions on 30×30 mazes versus 30% for solution-only baselines (2.67× improvement), while Slow Mode reached 97.6% optimal rate using 45.5% fewer reasoning steps than complete-trace baselines. Auto Mode delivered 96.6% optimal performance with 59.9% fewer steps than Searchformer, and generated significantly more diverse valid solutions (18.23 vs 1.86 unique paths per task).</p> -->
     
-    <p>Mathematical reasoning experiments fine-tuned Llama-3-8B and Mistral-7B models on the Aug-MATH dataset, showing consistent improvements across both architectures. Mistral-7B with trace dropping achieved 18.6% accuracy versus 16.9% for the baseline (10% relative improvement), while maintaining shorter reasoning traces. Performance degraded gracefully as dropping probability increased, indicating robust controllability.</p>
+    <!-- <p>Mathematical reasoning experiments fine-tuned Llama-3-8B and Mistral-7B models on the Aug-MATH dataset, showing consistent improvements across both architectures. Mistral-7B with trace dropping achieved 18.6% accuracy versus 16.9% for the baseline (10% relative improvement), while maintaining shorter reasoning traces. Performance degraded gracefully as dropping probability increased, indicating robust controllability.</p> -->
 
-    <p>Rigorous ablation studies compared Dualformer against naive mixing approaches and individual dropping strategy components, consistently demonstrating the superiority of the hierarchical dropping structure. Evaluation used comprehensive metrics including success rates across multiple samples, solution optimality measures, diversity counts, and computational efficiency indicators, providing strong evidence for both the method's effectiveness and its practical advantages in balancing reasoning quality with computational cost.</p>
-
+    <!-- <p>Rigorous ablation studies compared Dualformer against naive mixing approaches and individual dropping strategy components, consistently demonstrating the superiority of the hierarchical dropping structure. Evaluation used comprehensive metrics including success rates across multiple samples, solution optimality measures, diversity counts, and computational efficiency indicators, providing strong evidence for both the method's effectiveness and its practical advantages in balancing reasoning quality with computational cost.</p> -->
+    <br>
     <div class="non-interactive-image">
         <img src="maze.jpg" alt="maze" title="experiments" style="width: 600px; height: auto;">
         <p><em>Inference Modes of Dualformer</em></p>
     </div>
 
     <h3>5. Final Thoughts</h3>
-
-    <p>Dualformer represents a promising advancement in making AI reasoning systems more adaptable and efficient. The approach demonstrates significant potential across multiple dimensions: it could scale to larger models while reducing computational costs, enable deployment in resource-constrained environments, and facilitate better human-AI collaboration through controllable reasoning depth. The hierarchical structure also opens possibilities for curriculum learning approaches that gradually build reasoning complexity during training.</p>
-    <p>However, several limitations constrain its immediate widespread adoption. The method's dependence on well-structured reasoning traces and domain-specific dropping strategies limits its applicability to arbitrary reasoning tasks. Testing has been confined to relatively small models and specific domains (maze navigation, puzzle-solving, and mathematical reasoning), leaving questions about scalability to larger language models and diverse reasoning challenges unanswered. The need for careful tuning of dropping probabilities suggests the approach may not achieve full domain-agnostic generalization.</p>
-    <p>Despite these constraints, Dualformer marks a significant step toward more flexible reasoning systems that can dynamically balance computational depth with task requirements. This adaptive capability could fundamentally transform how we deploy AI systems that must navigate the perpetual trade-off between speed and accuracy, particularly in real-world applications where both efficiency and reasoning quality are critical.</p>
+    <br>
+    <!-- <p>Dualformer represents a promising advancement in making AI reasoning systems more adaptable and efficient. The approach demonstrates significant potential across multiple dimensions: it could scale to larger models while reducing computational costs, enable deployment in resource-constrained environments, and facilitate better human-AI collaboration through controllable reasoning depth. The hierarchical structure also opens possibilities for curriculum learning approaches that gradually build reasoning complexity during training.</p> -->
+    <!-- <p>However, several limitations constrain its immediate widespread adoption. The method's dependence on well-structured reasoning traces and domain-specific dropping strategies limits its applicability to arbitrary reasoning tasks. Testing has been confined to relatively small models and specific domains (maze navigation, puzzle-solving, and mathematical reasoning), leaving questions about scalability to larger language models and diverse reasoning challenges unanswered. The need for careful tuning of dropping probabilities suggests the approach may not achieve full domain-agnostic generalization.</p> -->
+    <!-- <p>Despite these constraints, Dualformer marks a significant step toward more flexible reasoning systems that can dynamically balance computational depth with task requirements. This adaptive capability could fundamentally transform how we deploy AI systems that must navigate the perpetual trade-off between speed and accuracy, particularly in real-world applications where both efficiency and reasoning quality are critical.</p> -->
 
     <p><b>Thanks for reading!</b></p>
     <!-- <br> -->
@@ -156,6 +155,7 @@
         <em>For more information, read the paper <a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">here</a>. For more articles like this, visit <a href="https://brainsesh.github.io/" target="_blank">blog</a>.</em><br>
         <em>If you have any questions and/or feedback, feel free to reach out at <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a></em><br>
         <em>This article is licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank">CC BY 4.0</a></em> <br>
+        <!-- <em>Research Partners: Ryan Borowicz, Claude Sonnet 4, illuminate.google.com</em><br> -->
     </p>
 
 
