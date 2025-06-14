@@ -57,9 +57,7 @@
     <p>In this article, I talk about my understanding, key takeaways and personal impressions on the <em><a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">“Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces”</a></em> paper released by FAIR at Meta on October 15, 2024.</p>
 
     <h3>Why is this paper interesting? </h3>
-    <p>A lot of focus today in the space of Artificial Intelligence (AI) is about a single model that can think and reason at par with an average human being or better than an average human being. There is substantial curiosity and active research around how the large language models can think, reason, and act with the help of agentic frameworks. We will not get into that here. We will talk about <em><b>thinking</b></em>. The process of thinking, the psychology of thinking, and the reproducibility of thinking. The last one is where this paper comes in!  </p>
-
-    <p>So, let’s start. </p>
+    <p>A lot of focus today in the space of Artificial Intelligence (AI) is about a single model that can think and reason at par with an average human being or better than an average human being. There is substantial curiosity and active research around how the large language models can think, reason, and act with the help of agentic frameworks. We will not get into that here. We will talk about <em><b>thinking</b></em>. The process of thinking, the psychology of thinking, and the reproducibility of thinking. The last one is where this paper comes in. So, let’s start. </p>
 
     <h3>1. The process and the psychology of thinking    </h2>
 
@@ -123,9 +121,9 @@
         <p><em>Encoder-Decoder Architecture</em></p>
     </div>
 
-    <p>Dualformer use the encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
+    <p>Dualformer use the encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. </p>
 
-    <p>The models are trained with 100K training samples. Model size being 15M and 46M for Maze and Sokoban tasks respectively. </p>
+    <p>The models are instantiated with T5 and RoPE for position encoding, and trained with 100K training samples. Model sizes are 15M and 46M for Maze and Sokoban tasks respectively. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
 
     <p>For the fast mode, Dualformer is trained on sequence data that only include the optimal final solution, without any reasoning trace. The slow mode baseline is the Complete-Trace model trained on data with complete A* search traces.</p>
 
