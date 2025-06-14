@@ -24,7 +24,7 @@ This space is created to share learnings, thought experiments, and personal blog
 Explore a collection of short blogs that spark curiosity and inspire thought in Artificial Intelligence (AI), Applied Economics, Mathematics, and Behavioral Sciences.
 
 #### Technical Paper
-1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think: </a> – Decoding Dualformer (bridging system 1 and system 2 thinking through transformers)
+1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think: </a> Decoding Dualformer (bridging system 1 and system 2 thinking through transformers)
 
 
 ---
