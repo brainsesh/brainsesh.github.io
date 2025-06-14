@@ -107,9 +107,9 @@
     </div>
 
 
-    <p>Current reasoning systems face a critical limitation: they must choose between speed and accuracy. Models trained only on complete reasoning traces (like Searchformer) are slow and computationally expensive, while solution-only models are fast but significantly less accurate. Previous approaches requiring separate models, distillation, or meta-controllers add complexity and computational overhead.</p>
-    <p>Dualformer solves this by creating a unified system that can dynamically adjust its reasoning depth based on task requirements or user preferences. This mirrors human cognition, where we unconsciously switch between intuitive quick decisions (System 1) and deliberate analytical thinking (System 2) depending on the situation's complexity and stakes.</p>
+    <p>So, Dualformer is suggesting a unified system that can dynamically adjust its reasoning depth based on task requirements and user preferences. This mimics the human thinking process, where we unconsciously switch between intuitive quick decisions (System 1) and deliberate analytical thinking (System 2) depending on the situation's complexity and stakes.</p>
     <p>The approach also addresses practical deployment concerns: a single model that can operate in multiple modes is more efficient than maintaining separate systems, while the structured dropping reduces training time by shortening input sequences.</p>
+
 
     <h3>3. Model Architecture </h3>
 
@@ -120,10 +120,14 @@
 
     <p>Dualformer use the encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
 
-    <p>The models are trained with 100K training samples. Model size being 15M and 46M for Maze and Sokoban tasks repectively. </p>
+    <p>The models are trained with 100K training samples. Model size being 15M and 46M for Maze and Sokoban tasks respectively. </p>
+
+    <p>For the fast mode, Dualformer is trained on sequence data that only include the optimal final solution, without any reasoning trace. The slow mode baseline is the Complete-Trace model trained on data with complete A* search traces.</p>
 
     <h3>4. Experiments and Evidence </h3>
 
+    <p>Whether a model generates correct and optimal plans is measured using two metrics: <b>1-Solved-64</b> and <b>1-Optimal-64</b>. So 64 responses are randomly sampled from a trained model. Each response is parsed and evaluated regardless of the generated trace part. If any of the 64 plans is correct, i.e. is feasible and reaches the goal location, this task is labelled as success for the 1-Solved-64 metric. If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric. This is repeated for 1000 unseen evaluation tasks and report the average success rate. To investigate the robustness of each method, metrics 3-Solved-64 and 3-Optimal-64, where a task is labelled as success if at least 3 plans are correct or optimal are also reported.</p>
+    
     <p>The authors conducted comprehensive experiments across pathfinding tasks and mathematical reasoning to validate Dualformer's effectiveness. For pathfinding, they used maze navigation (15×15 to 30×30) and Sokoban puzzles with 100k training examples from A* search traces. Results demonstrated substantial improvements: Fast Mode achieved 80% optimal solutions on 30×30 mazes versus 30% for solution-only baselines (2.67× improvement), while Slow Mode reached 97.6% optimal rate using 45.5% fewer reasoning steps than complete-trace baselines. Auto Mode delivered 96.6% optimal performance with 59.9% fewer steps than Searchformer, and generated significantly more diverse valid solutions (18.23 vs 1.86 unique paths per task).</p>
     
     <p>Mathematical reasoning experiments fine-tuned Llama-3-8B and Mistral-7B models on the Aug-MATH dataset, showing consistent improvements across both architectures. Mistral-7B with trace dropping achieved 18.6% accuracy versus 16.9% for the baseline (10% relative improvement), while maintaining shorter reasoning traces. Performance degraded gracefully as dropping probability increased, indicating robust controllability.</p>
