@@ -28,7 +28,7 @@ Collection of articles and technical reviews that aim to make ideas in Artificia
 2. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Linear Algebra</a> – Hidden Language Behind Modern Technology
 
 ### Technology Trends
-1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Language Models</a> – Digital Minds Reshaping How We Communicate -->
+1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Language Models</a> – Digital Minds Reshaping How We Communicate
 
 ---
 
