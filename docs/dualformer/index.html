@@ -154,32 +154,6 @@
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
     <div class="container">
         <div class="sidebar" id="sidebar">
-            <!-- ...existing sidebar code... -->
-        </div>
-        <div class="main-content">
-            <!-- ...existing main content... -->
-        </div>
-    </div>
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-        }
-        // Optional: close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            var sidebar = document.getElementById('sidebar');
-            var toggle = document.querySelector('.sidebar-toggle');
-            if (
-                sidebar.classList.contains('open') &&
-                !sidebar.contains(event.target) &&
-                !toggle.contains(event.target)
-            ) {
-                sidebar.classList.remove('open');
-            }
-        });
-    </script>
-    <div class="container">
-        <div class="sidebar">
             <!-- <h2><a href="/index.html">Home</a></h2> -->
             <h2>
                 <a href="/index.html" style="display: flex; align-items: center; gap: 8px;">
@@ -205,6 +179,7 @@
                 </a>
             </div>
         </div>
+
     <div class="main-content">
     <h1>Learning to Think - Decoding Dualformer</h1>
     <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
@@ -376,6 +351,24 @@
     </p>
 
     </div>
-</div>
+    </div>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+        // Optional: close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            var sidebar = document.getElementById('sidebar');
+            var toggle = document.querySelector('.sidebar-toggle');
+            if (
+                sidebar.classList.contains('open') &&
+                !sidebar.contains(event.target) &&
+                !toggle.contains(event.target)
+            ) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
