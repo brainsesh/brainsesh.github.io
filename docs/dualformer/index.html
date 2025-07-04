@@ -226,41 +226,41 @@
 
 
     <p>
-    Essentially, System 1 relies on mental shortcuts easily at disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning, analysis and typically comes into play when called to make more careful evaluation.
+    Essentially, System 1 relies on mental shortcuts easily at our disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning and analysis, and typically comes into play when called to make more careful evaluation.
     <br> <br>
-    And there is a beautiful play of information, speed and accuracy that becomes essential to look at as we understand this dual process theory for thinking. One always has some information to make a decision, even it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, while System 2 might just wait a little longer to collect more information if necessary.
+    And there is a beautiful play of information, speed, and accuracy that becomes essential to look at as we understand this dual process theory for thinking. One always has some information to make a decision, even if it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, while System 2 may wait a little longer to collect more information if necessary.
     <br> <br>
-    Some decisions, for example, <em>what one would like to eat for breakfast</em>, might not require to be so accurate as the risk of making that decision could be low in most situations excluding people with serious health concerns. In that case System 1 thinking is all that’s need. But say decisions like <em>where would one go to school for a graduate degree</em> or <em>is it the right time to buy a home for a young family</em>, where the risk involved is much higher would require more thought, information and analysis. <b>Sometimes this does not just need one person’s System 2 thinking but multiple trusted individuals and their System 2 thinking to make decisions</b>.
+    Some decisions, like <em>choosing what to eat for breakfast</em>, might not require us to be so accurate as the risk of making that decision is generally low. In that case System 1 thinking is all that’s needed. But for higher risk decisions like <em>choosing an international graduate degree program or a family buying a first-time home</em>, the risk involved is much higher and the decision would require more thought, information, and analysis. Sometimes this <b>requires multiple trusted individuals using their System 2 thinking</b> to make decisions.
     </p>
    
     <h3>2. Ideas explored in the paper  </h2>
 
     <p>Dualformer is a novel transformer-based architecture that integrates both fast and slow reasoning modes into a single model, inspired by this dual process theory. The model addresses a fundamental trade-off in AI reasoning systems: fast models are computationally efficient but less accurate, while slow models that generate detailed reasoning traces are more accurate but computationally expensive.</p>
 
-    <p>The core innovation lies in structured trace dropping during training. Instead of training separate models for fast and slow reasoning, Dualformer learns from randomized reasoning traces where different parts are systematically dropped according to four hierarchical levels:<p>
+    <p>The core innovation lies in structured trace dropping during training. Instead of training separate models for fast and slow reasoning, Dualformer learns from <em><b>randomized reasoning traces</b></em> (think of this as set of steps required to complete a given task) where different parts are systematically dropped according to four hierarchical levels:<p>
     <ul>
-        <li><strong>Level 1:</strong> Drop "close" clauses from <em><a href="https://arxiv.org/pdf/2402.14083" target="_blank">A* search</a></em> traces</li>
+        <li><strong>Level 1:</strong> Drop "close" (successful completion of individual steps) clauses from <em><a href="https://arxiv.org/pdf/2402.14083" target="_blank">A* search</a></em> traces</li>
         <li><strong>Level 2:</strong> Additionally drop cost information from remaining clauses</li>
-        <li><strong>Level 3:</strong> Further drop 30% of "create" clauses randomly</li>
+        <li><strong>Level 3:</strong> Further drop 30% of "create" clauses (creating/executing individual steps) randomly</li>
         <li><strong>Level 4:</strong> Drop the entire reasoning trace, keeping only the final solution</li>
     </ul>
 
-    <p>Imagine training a new detective (say, an intern) by showing them case files with varying levels of detail.</p>
+    <p>Imagine training a new detective (say, an intern) by showing them case files with varying levels of detail. Here "close" clauses indicate closed investigations, while "create" clauses indicate new ones.</p>
     <ul>
-        <li><strong>Level 0:</strong> Here the intern detective has all information at once for full methodical investigation </li>
-        <li><strong>Level 1:</strong> Here “close” clauses are hidden, meaning the detective does not know the investigations that are "closed" and the final outcome, still has all active leads and costs of pursuing these leads, etc. </li>
-        <li><strong>Level 2:</strong> Here both “close” clauses and cost calculations are removed, meaning the detective does not know the closed investigations, final outcome and the cost of pursuing those investigations </li>
-        <li><strong>Level 3:</strong> Here random 30% of “create” clauses are dropped, meaning the detective does not have information about 30% of the investigation cases </li>
-        <li><strong>Level 4:</strong> Drop entire reasoning trace, meaning the detective is given the final outcome of the entire case without any notes on investigation and the intern detective has to trace back all the investigation </li>
+        <li><strong>Level 0:</strong> The intern detective has all information available at once for a full methodical investigation </li>
+        <li><strong>Level 1:</strong> “Close” clauses are hidden, meaning the detective doesn’t know the investigations that are "closed" or the final outcome, but still has all active leads and knows the costs of pursuing these leads </li>
+        <li><strong>Level 2:</strong> Both “close” clauses and cost calculations are removed, meaning the detective doesn’t know the closed investigations, final outcome, or the cost of pursuing those investigations </li>
+        <li><strong>Level 3:</strong> Further, a random 30% of “create” clauses are dropped, meaning the detective doesn’t have information about 30% of the investigation cases </li>
+        <li><strong>Level 4:</strong> Drop entire reasoning trace, meaning the intern detective is given the final outcome of the case without any notes on the investigations and has to try trace back the details of all/necessary investigations to arrive at the final outcome </li>
     </ul>
     
-    <p>The idea is that this systematic variation teaches the intern detective to solve cases efficiently when they are really working on an active case. Beautiful!</p>
+    <p>Learning in this systematic approach can teach the intern detective to solve cases efficiently when they are working on an active case in the future. </p>
 
     <div class="non-interactive-image">
         <img src="model.jpg" alt="model" title="model architecture" style="width: 800px; height: auto;">
     </div>
     
-    <p>More about A* algorithm can be understood from <em><a href="https://arxiv.org/pdf/2402.14083" target="_blank">Searchformer </a></em> paper released by Meta in April 2024. Very briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. </p>
+    <p>More about A* algorithm can be understood from the <a href="https://arxiv.org/pdf/2402.14083" target="_blank">Searchformer</a> paper released by Meta in April 2024. Very briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. </p>
 
     <ul>
     <li> It works by maintaining two lists: a "create" list of locations it might explore next, and a "close" list of locations it has already checked.   </li>
