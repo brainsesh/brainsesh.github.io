@@ -195,7 +195,7 @@
                 </a>
             </div>
         </div>
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="main-content">
     <h1>Learning to Think - Decoding Dualformer</h1>
     <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
@@ -393,7 +393,24 @@
         document.getElementById('sidebarOverlay').onclick = function() {
             document.getElementById('sidebar').classList.remove('open');
             this.style.display = 'none';
+            // Show the toggle button again
+            if (window.innerWidth <= 900) {
+                document.querySelector('.sidebar-toggle').style.display = 'block';
+            }
         };
+        // Optional: Hide sidebar if window resized to desktop
+        window.addEventListener('resize', function() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            var toggleBtn = document.querySelector('.sidebar-toggle');
+            if (window.innerWidth > 900) {
+                sidebar.classList.remove('open');
+                overlay.style.display = 'none';
+                toggleBtn.style.display = 'none';
+            } else {
+                toggleBtn.style.display = sidebar.classList.contains('open') ? 'none' : 'block';
+            }
+        });
         /*window.addEventListener('resize', function() {
             var toggleBtn = document.querySelector('.sidebar-toggle');
             if (window.innerWidth > 900) {
