@@ -86,6 +86,25 @@
             margin-left: 320px;
             padding: 0 20px;
         }
+        .sidebar-linkedin {
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .sidebar-linkedin img.profile-pic {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid #0056b3;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.2s;
+        }
+        .sidebar-linkedin img.profile-pic:hover {
+            box-shadow: 0 4px 16px rgba(0,86,179,0.18);
+        }
     </style>
 </head>
 <body>
@@ -103,6 +122,11 @@
                 <li><a href="/docs/the-art-of-brainstorming/index.html">Something 1</a></li>
                 <li><a href="/docs/the-art-of-brainstorming/index.html">Something 2</a></li>
             </ul>
+            <div class="sidebar-linkedin">
+                <a href="https://www.linkedin.com/in/lavanya-basavaraju/" target="_blank" title="Connect on LinkedIn">
+                    <img src="/images/LB_photo.jpg" alt="Lavanya Basavaraju" class="profile-pic" />
+                </a>
+            </div>
         </div>
     <div class="main-content">
     <h1>Learning to Think - Decoding Dualformer</h1>
