@@ -8,8 +8,13 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0; /* original 20px */
             color: #333;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto 0 auto;
+            position: relative;
         }
         h1, h2 {
             color: #0056b3;
@@ -48,7 +53,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 220px;
+            width: 300px;
             height: 100%;
             background: #f5f8fa;
             border-right: 1px solid #ddd;
@@ -78,22 +83,27 @@
             color: #0056b3;
         }
         .main-content {
-            margin-left: 240px;
+            margin-left: 320px;
             padding: 0 20px;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Articles</h2>
-        <ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/docs/dualformer/index.html">Dualformer</a></li>
-            <li><a href="/docs/the-art-of-brainstorming/index.html">Searchformer</a></li>
-            <li><a href="/docs/the-art-of-brainstorming/index.html">Llama-3.1</a></li>
-            <!-- Add more articles as needed -->
-        </ul>
-    </div>
+    <div class="container">
+        <div class="sidebar">
+            <h2><a href="/index.html">Home</a></h2>
+            <h3>Technical Reviews</h3>
+            <ul>
+                <li><a href="/docs/dualformer/index.html">Dualformer</a></li>
+                <li><a href="/docs/the-art-of-brainstorming/index.html">Searchformer</a></li>
+                <li><a href="/docs/the-art-of-brainstorming/index.html">Llama-3.1</a></li>
+            </ul>
+            <h3>Technology Trends</h3>
+            <ul>
+                <li><a href="/docs/the-art-of-brainstorming/index.html">Something 1</a></li>
+                <li><a href="/docs/the-art-of-brainstorming/index.html">Something 2</a></li>
+            </ul>
+        </div>
     <div class="main-content">
     <h1>Learning to Think - Decoding Dualformer</h1>
     <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
@@ -264,6 +274,7 @@
         <!-- <em>Research Partners: Ryan Borowicz, Claude Sonnet 4, illuminate.google.com</em><br> -->
     </p>
 
-
+    </div>
+</div>
 </body>
 </html>

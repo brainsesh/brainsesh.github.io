@@ -23,7 +23,7 @@ This space is created to share learnings, thought experiments, and technical per
 ## Tidbits
 Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
 
-#### Technical Review
+#### Technical Reviews
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
 2. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Linear Algebra</a> – Hidden Language Behind Modern Technology
 
