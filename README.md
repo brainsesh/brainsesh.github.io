@@ -2,11 +2,14 @@
 
 Welcome to **brainsesh**, a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**!
 
-This space is created to share learnings, thought experiments, and technical perspectives from contributors. Whether you're looking to discover insights about technical breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
+This space is created to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
+<br>
 
 <div style="text-align: center;">
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
+
+<br>
 
 ---
 
