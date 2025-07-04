@@ -137,16 +137,19 @@
         .sidebar.open {
             left: 0;
         }
-        .main-content {
+        /*.main-content { 
             margin-left: 0;
             padding: 0 10px;
+        }*/
+         .main-content {
+            margin-top: 60px; /* Adjust as needed for your button height */
         }
         .sidebar-toggle {
             display: block;
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 2100;
+            z-index: 1500;  /* Lower than sidebar's 2000 */
             background: #0056b3;
             color: #fff;
             border: none;
