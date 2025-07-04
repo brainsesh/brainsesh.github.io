@@ -4,13 +4,13 @@ Welcome to **brainsesh**, a space dedicated to **learning**, **growth**, **refle
 
 <!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Tutorials**](#tutorials) -->
 
-<!-- <div style="text-align: center;">
-  <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
-</div> -->
-
 <div style="text-align: center;">
-  <img src="./images/logo_round.jpg" alt="Brainsesh Logo" width="450"/>
+  <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
+
+<!-- <div style="text-align: center;">
+  <img src="./images/logo_round.jpg" alt="Brainsesh Logo" width="450"/>
+</div> -->
 
 This space is created to share learnings, thought experiments, and technical perspectives from contributors. Whether you're looking to discover insights about technical breakthroughs, explore scientific concepts, or just seek to broaden perspectives **brainsesh** is your go-to space.
 
