@@ -72,13 +72,15 @@
         <p><em>System 1 vs System 2 Thinking</em></p>
     </div>
 
-    <p>Essentially, System 1 relies on mental shortcuts easily at disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning and analysis and typically comes into play when called to make more careful evaluation. </p>
 
-    <p>And there is a beautiful play of information, speed and accuracy that becomes essential to look at as we understand this dual process theory for thinking. You always have some information to make a decision, even it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, while System 2 might just wait a little longer to collect more information if necessary. </p>
-
-    <p>Some decisions, like <em>what would you like for breakfast?</em>, might not require the response/decision to be so accurate as the risk of making that decision could be low (in most situations excluding people with serious health concerns). In that case System 1 thinking is all we need. But say decisions like <em>where would one go to school for a graduate degree?</em> or <em>is it the right time to buy a home for a young family?</em>, where the risk involved is much higher, then decision making would require more thought, information and analysis. </p>
-    <!-- <p>Sometime this does not just need one person’s System 2 thinking but multiple trusted individuals and their System 2 thinking to make decisions!</p> -->
-
+    <p>
+    Essentially, System 1 relies on mental shortcuts easily at disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning, analysis and typically comes into play when called to make more careful evaluation.
+    <br> <br>
+    And there is a beautiful play of information, speed and accuracy that becomes essential to look at as we understand this dual process theory for thinking. One always has some information to make a decision, even it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, while System 2 might just wait a little longer to collect more information if necessary.
+    <br> <br>
+    Some decisions, for example, <em>what one would like to eat for breakfast</em>, might not require to be so accurate as the risk of making that decision could be low in most situations excluding people with serious health concerns. In that case System 1 thinking is all that’s need. But say decisions like <em>where would one go to school for a graduate degree</em> or <em>is it the right time to buy a home for a young family</em>, where the risk involved is much higher would require more thought, information and analysis. <b>Sometimes this does not just need one person’s System 2 thinking but multiple trusted individuals and their System 2 thinking to make decisions</b>.
+    </p>
+   
     <h3>2. Ideas explored in the paper  </h2>
 
     <p>Dualformer is a novel transformer-based architecture that integrates both fast and slow reasoning modes into a single model, inspired by this dual process theory. The model addresses a fundamental trade-off in AI reasoning systems: fast models are computationally efficient but less accurate, while slow models that generate detailed reasoning traces are more accurate but computationally expensive.</p>
@@ -110,9 +112,13 @@
 
     <ul>
     <li> It works by maintaining two lists: a "create" list of locations it might explore next, and a "close" list of locations it has already checked.   </li>
-    <li> For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.   </li>
+        <ul>
+            <li> For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.   </li>
+        </ul>
     <li> From the intern detective perspective, say there are 2 files – “active leads” (create list) of potential clues to investigate next and “case closed” (close list) of leads already thoroughly examined.    </li>
-    <li> For each active lead, the intern detective should calculate both the effort already invested to reach that point and estimate the remaining work needed to solve the case, always pursuing the most promising lead first.   </li>
+        <ul>   
+            <li> For each active lead, the intern detective should calculate both the effort already invested to reach that point and estimate the remaining work needed to solve the case, always pursuing the most promising lead first.   </li>
+        </ul> 
     </ul>
     <p>During training, each example randomly selects a dropping strategy from these levels, enabling the model to learn shortcuts in reasoning while maintaining the ability to generate full traces when needed. At inference time, Dualformer can operate in three modes:</p>
     <ul>
@@ -197,9 +203,8 @@
         <li>Process of thinking and technical reproducibility of that </li>
         <li>Training a model to learn to think in fast and slow mode using randomized reasoning traces (elegance!)  </li>
         <li>While encoding-only architectures excel and large decoder-only models continue to impress, the encoder-decoder approach explored in Dualformer emerges as potentially crucial for sophisticated thinking and reasoning capabilities (big fan!) </li>
-        <li>Kudos to all the authors and stakeholders who took this idea and produced quality studies with meaningful results (not all ideas are pursued, not all pursued ideas are successful, it is a hard process!)</li>
     </ul>
-
+    <p>Kudos to all the authors and stakeholders who took this idea and produced quality studies with meaningful results (not all ideas are pursued, not all pursued ideas are successful, it is a hard process!)</p>
     <br>
 
     <p><b>Thanks for reading!</b></p>
