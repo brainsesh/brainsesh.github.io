@@ -24,8 +24,11 @@ This space is created to share learnings, thought experiments, and technical per
 Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
 
 #### Technical Review
-1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think: </a> Decoding Dualformer (bridging system 1 and system 2 thinking through transformers)
+1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
+2. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Linear Algebra</a> – Hidden Language Behind Modern Technology
 
+### Technology Trends
+1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Language Models</a> – Digital Minds Reshaping How We Communicate -->
 
 ---
 
