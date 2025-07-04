@@ -44,9 +44,57 @@
             padding: 5px;
             border-radius: 5px;
         }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100%;
+            background: #f5f8fa;
+            border-right: 1px solid #ddd;
+            padding: 30px 15px 15px 15px;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        .sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .sidebar ul li a:hover {
+            color: #0056b3;
+        }
+        .main-content {
+            margin-left: 240px;
+            padding: 0 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Articles</h2>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/docs/dualformer/index.html">Dualformer</a></li>
+            <li><a href="/docs/the-art-of-brainstorming/index.html">Searchformer</a></li>
+            <li><a href="/docs/the-art-of-brainstorming/index.html">Llama-3.1</a></li>
+            <!-- Add more articles as needed -->
+        </ul>
+    </div>
+    <div class="main-content">
     <h1>Learning to Think - Decoding Dualformer</h1>
     <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
     <p style="font-size: 0.9em; line-height: 1.3;">
