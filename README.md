@@ -3,9 +3,9 @@
 Welcome to **brainsesh**, a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**!
 
 This space is created to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
-<br>
 
 <div style="text-align: center;">
+  <br>
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
 

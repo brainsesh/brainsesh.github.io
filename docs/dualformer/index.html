@@ -200,13 +200,13 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="main-content">
     <h1>Learning to Think - Decoding Dualformer</h1>
-    <p><em>(bridging system 1 and system 2 thinking through transformers)</em></p>
+    <p><em>(Bridging system 1 and system 2 thinking through transformers)</em></p>
     <p style="font-size: 0.9em; line-height: 1.3;">
         <em><b>Author:</b> <a href="https://www.linkedin.com/in/lavanya-basavaraju/" target="_blank">Lavanya Basavaraju</a>; Published on July 04, 2025 </em><br>
         <em>If you have any questions and/or feedback, feel free to reach out at <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a></em>
     </p>
 
-    <p>In this article, I talk about my understanding, key takeaways and personal impressions on the <em><a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">“Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces”</a></em> paper released by FAIR at Meta on October 15, 2024.</p>
+    <p>In this article, I talk about my understanding, personal impressions, and key takeaways on the <em><a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">“Dualformer: Controllable Fast and Slow Thinking by Learning with Randomized Reasoning Traces”</a></em> paper released by FAIR at Meta on October 15, 2024.</p>
 
     <h3>Why is this paper interesting? </h3>
     <p>A lot of focus today in the space of Artificial Intelligence (AI) is about a single model that can think and reason at par with an average human being or better than an average human being. There is substantial curiosity and active research around how the large language models can think, reason, and act with the help of agentic frameworks. We will not get into that here. We will talk about <em><b>thinking</b></em>. The process of thinking, the psychology of thinking, and the reproducibility of thinking. The last one is where this paper comes in.  </p>
@@ -214,7 +214,7 @@
 
     <h3>1. The process and the psychology of thinking    </h2>
 
-    <p>A significant portion of civilization results from human thought. But if we were to understand the process of thinking, dual process theory is one of the key concepts. First explained by Wason and Evans in 1974 and popularized by Kahneman in 2017 (Thinking Fast and Slow), dual process theory proposes that human cognition operates through two distinct systems of thinking.</p>
+    <p>A significant portion of civilization results from human thought. And if we were to understand the process of thinking, dual process theory is one of the key concepts. Explained in 1974 by Wason and Evans and popularized by Kahneman in 2017 (Thinking Fast and Slow), dual process theory proposes that human cognition operates through two distinct systems of thinking.</p>
     <ul>
         <li><strong>System 1:</strong> fast, automatic and intuitive </li>
         <li><strong>System 2:</strong> slow, deliberate and effortful </li>
@@ -229,7 +229,7 @@
     <p>
     Essentially, System 1 relies on mental shortcuts easily at our disposal from memory to make quick opinions, judgements and decisions, and System 2 requires cognitive resources for systematic reasoning and analysis, and typically comes into play when called to make more careful evaluation.
     <br> <br>
-    And there is a beautiful play of information, speed, and accuracy that becomes essential to look at as we understand this dual process theory for thinking. One always has some information to make a decision, even if it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, while System 2 may wait a little longer to collect more information if necessary.
+    And there is a beautiful play of information, speed, and accuracy that becomes essential to look at as we understand this dual process theory for thinking. We always have some information to make a decision, even if it is from memory or some kind of input at the moment. System 1 will use that information to make the decision fast, while System 2 may wait a little longer to collect more information if necessary.
     <br> <br>
     Some decisions, like <em>choosing what to eat for breakfast</em>, might not require us to be so accurate as the risk of making that decision is generally low. In that case System 1 thinking is all that’s needed. But for higher risk decisions like <em>choosing an international graduate degree program or a family buying a first-time home</em>, the risk involved is much higher and the decision would require more thought, information, and analysis. Sometimes this <b>requires multiple trusted individuals using their System 2 thinking</b> to make decisions.
     </p>
@@ -317,8 +317,8 @@
         <li>64 responses are randomly sampled from a trained model </li>
         <li>Each response is parsed and evaluated regardless of the generated trace part</li>
         <ul>
-            <li>1-Solved-64 metric: If any of the 64 plans is correct, i.e. plan is feasible and reaches the goal/finish, this task is labelled as success for the 1-Solved-64 metric</li>
-            <li>1-Optimal-64 metric:If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric </li>
+            <li>1-Solved-64: If any of the 64 plans is correct, i.e. plan is feasible and reaches the goal/finish, this task is labelled as success for the 1-Solved-64 metric</li>
+            <li>1-Optimal-64:If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric </li>
         </ul>
         <li>This is repeated for 1000 unseen evaluation tasks and report the average success rate</li>
         <li>To investigate the robustness of each method, metrics 3-Solved-64 and 3-Optimal-64, where a task is labelled as success if at least 3 plans are correct or optimal are also reported</li>
