@@ -21,7 +21,7 @@ This space is created to share learnings, thought experiments, and technical per
 <!-- --- -->
 
 ## Tidbits
-A collection of articles and technical reviews that make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
+Collection of articles and technical reviews that make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
 
 #### Technical Review
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think: </a> Decoding Dualformer (bridging system 1 and system 2 thinking through transformers)
