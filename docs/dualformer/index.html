@@ -91,12 +91,29 @@
         <li><strong>Level 4:</strong> Drop the entire reasoning trace, keeping only the final solution</li>
     </ul>
 
+    <p>Imagine training a new detective (say, an intern) by showing them case files with varying levels of detail.</p>
+    <ul>
+        <li><strong>Level 0:</strong> Here the intern detective has all information at once for full methodical investigation </li>
+        <li><strong>Level 1:</strong> Here “close” clauses are hidden, meaning the detective does not know the investigations that are "closed" and the final outcome, still has all active leads and costs of pursuing these leads, etc. </li>
+        <li><strong>Level 2:</strong> Here both “close” clauses and cost calculations are removed, meaning the detective does not know the closed investigations, final outcome and the cost of pursuing those investigations </li>
+        <li><strong>Level 3:</strong> Here random 30% of “create” clauses are dropped, meaning the detective does not have information about 30% of the investigation cases </li>
+        <li><strong>Level 4:</strong> Drop entire reasoning trace, meaning the detective is given the final outcome of the entire case without any notes on investigation and the intern detective has to trace back all the investigation </li>
+    </ul>
+
     <div class="non-interactive-image">
         <img src="model.jpg" alt="model" title="model architecture" style="width: 800px; height: auto;">
     </div>
 
-    <p>At this point, It is okay to not fully understand A* algorithm. We will get to that in another blog. But briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. It works by maintaining two lists: a "create" list of  locations it might explore next, and a "close" list of locations it has already checked. For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like Manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.</p>
+    <p>The idea is that this systematic variation teaches the intern detective to solve cases efficiently when they are really working on an active case. Beautiful!</p>
+    
+    <p>More about A* algorithm can be understood from SearchFormer paper released by meta in xx. Very briefly, A* is a pathfinding algorithm that finds the shortest route between two points, like navigating through a maze from start to goal. </p>
 
+    <ul>
+    <li> It works by maintaining two lists: a "create" list of locations it might explore next, and a "close" list of locations it has already checked.   </li>
+    <li> For each potential location, A* calculates two key values: the actual cost to reach that spot from the start, and a heuristic estimate of how far it still is from the goal (like manhattan distance in a grid). It combines these to prioritize which location to explore next, always choosing the most promising option.   </li>
+    <li> From the intern detective perspective, say there are 2 files – “active leads” (create list) of potential clues to investigate next and “case closed” (close list) of leads already thoroughly examined.    </li>
+    <li> For each active lead, the intern detective should calculate both the effort already invested to reach that point and estimate the remaining work needed to solve the case, always pursuing the most promising lead first.   </li>
+    </ul>
     <p>During training, each example randomly selects a dropping strategy from these levels, enabling the model to learn shortcuts in reasoning while maintaining the ability to generate full traces when needed. At inference time, Dualformer can operate in three modes:</p>
     <ul>
         <li><strong>Fast mode:</strong> Outputs solutions directly without reasoning steps</li>
@@ -121,32 +138,70 @@
         <p><em>Encoder-Decoder Architecture</em></p>
     </div>
 
-    <p>Dualformer use the encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. </p>
+    <p>Most of the large generative models today use decoder-only framework. Dualformer uses the encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
 
-    <p>The models are instantiated with T5 and RoPE for position encoding, and trained with 100K training samples. Model sizes are 15M and 46M for Maze and Sokoban tasks respectively. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
+    <p>The models are instantiated with T5 and RoPE for position encoding, and trained with 100K training samples. Model sizes are 15M and 46M for Maze and Sokoban tasks respectively. </p>
 
     <p>For the fast mode, Dualformer is trained on sequence data that only include the optimal final solution, without any reasoning trace. The slow mode baseline is the Complete-Trace model trained on data with complete A* search traces.</p>
 
     <h3>4. Experiments and Evidence </h3>
 
-    <p>Whether a model generates correct and optimal plans is measured using two metrics: <b>1-Solved-64</b> and <b>1-Optimal-64</b>. So 64 responses are randomly sampled from a trained model. Each response is parsed and evaluated regardless of the generated trace part. If any of the 64 plans is correct, i.e. is feasible and reaches the goal location, this task is labelled as success for the 1-Solved-64 metric. If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric. This is repeated for 1000 unseen evaluation tasks and report the average success rate. To investigate the robustness of each method, metrics 3-Solved-64 and 3-Optimal-64, where a task is labelled as success if at least 3 plans are correct or optimal are also reported.</p>
-    
-    <!-- <p>The authors conducted comprehensive experiments across pathfinding tasks and mathematical reasoning to validate Dualformer's effectiveness. For pathfinding, they used maze navigation (15×15 to 30×30) and Sokoban puzzles with 100k training examples from A* search traces. Results demonstrated substantial improvements: Fast Mode achieved 80% optimal solutions on 30×30 mazes versus 30% for solution-only baselines (2.67× improvement), while Slow Mode reached 97.6% optimal rate using 45.5% fewer reasoning steps than complete-trace baselines. Auto Mode delivered 96.6% optimal performance with 59.9% fewer steps than Searchformer, and generated significantly more diverse valid solutions (18.23 vs 1.86 unique paths per task).</p> -->
-    
-    <!-- <p>Mathematical reasoning experiments fine-tuned Llama-3-8B and Mistral-7B models on the Aug-MATH dataset, showing consistent improvements across both architectures. Mistral-7B with trace dropping achieved 18.6% accuracy versus 16.9% for the baseline (10% relative improvement), while maintaining shorter reasoning traces. Performance degraded gracefully as dropping probability increased, indicating robust controllability.</p> -->
-
-    <!-- <p>Rigorous ablation studies compared Dualformer against naive mixing approaches and individual dropping strategy components, consistently demonstrating the superiority of the hierarchical dropping structure. Evaluation used comprehensive metrics including success rates across multiple samples, solution optimality measures, diversity counts, and computational efficiency indicators, providing strong evidence for both the method's effectiveness and its practical advantages in balancing reasoning quality with computational cost.</p> -->
+    <p>I really like the experimental design produced in this paper. The authors are basically trying to answer 3 key questions which align with not only the thinking process but also how one would want to use a large language model today for reasoning. Here are the 3 questions around which the experiments are conducted,</p>
+    <ul>
+        <li>Does Dualformer outperform corresponding baselines in fast, slow and auto mode? Does it generate more diverse plans? </li>
+        <li>In slow model, does Dualformer lead to faster reasoning, i.e., output a shorter trace?</li>
+        <li>Does the structured trace dropping technique generalize to LLMs trained on natural language datasets?</li>
+    </ul>
     <br>
-    <div class="non-interactive-image">
+    <p>In terms of evaluation process, whether a model generates correct and optimal plans is measured using two metrics: <b>1-Solved-64</b> and <b>1-Optimal-64</b>. </p>
+    <ul>
+        <li>64 responses are randomly sampled from a trained model </li>
+        <li>Each response is parsed and evaluated regardless of the generated trace part</li>
+        <li>If any of the 64 plans is correct, i.e. is feasible and reaches the goal location, this task is labelled as success for the 1-Solved-64 metric</li>
+        <li>If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric </li>
+        <li>This is repeated for 1000 unseen evaluation tasks and report the average success rate</li>
+        <li>To investigate the robustness of each method, metrics 3-Solved-64 and 3-Optimal-64, where a task is labelled as success if at least 3 plans are correct or optimal are also reported</li>
+    </ul>
+    <p>The authors conducted experiments across pathfinding tasks and mathematical reasoning to validate Dualformer's effectiveness. </p>
+    <br>
+    <p>For pathfinding, they used maze navigation (15×15 to 30×30) and Sokoban puzzles with 100k training examples from A* search traces. Results demonstrated substantial improvements: </p>
+    <ul>    
+    <li>Fast Mode achieved 80% optimal solutions on 30×30 mazes versus 30% for solution-only baselines (2.67× improvement), </li>
+    <li>Slow Mode reached 97.6% optimal rate using 45.5% fewer reasoning steps than complete-trace baselines, and</li>
+    <li>Auto Mode delivered 96.6% optimal performance with 59.9% fewer steps than Searchformer and generated significantly more diverse valid solutions (18.23 vs 1.86 unique paths per task).</li>
+    </ul>
+
+    <p>
+    To answer the third question, “does the structured trace dropping technique generalize to LLMs trained on natural language datasets?”, the authors conducted mathematical reasoning experiments by fine-tuning Llama-3.1-8B and Mistral-7B models on the Aug-MATH dataset. 
+    <br>
+    This Aug-MATH dataset creation is a nice piece of experiment in itself. The dataset is derived from the MATH dataset (Hendrycks et al., 2021) that contains 7500 training examples of math questions and solutions, and 5000 testing examples. They take this data and use Llama-3.1-70B-Instruct model to rewrite the solutions with detailed intermediate steps. And then to introduce diversity, they sample 4 responses for each question. This produces an overall dataset of 30K training examples and 5K testing examples. 
+    <br>    
+    The evaluation shows consistent improvements from LLM finetuning, which proves that using this framework can be generalized. The key ideas is, if one were to finetune this framework for a specific reasoning task, one can achieve much better performance compared to baseline.
+    </p>
+    
+    <br>
+    <!-- <div class="non-interactive-image">
         <img src="maze.jpg" alt="maze" title="experiments" style="width: 600px; height: auto;">
         <p><em>Inference Modes of Dualformer</em></p>
-    </div>
+    </div> -->
 
     <h3>5. Final Thoughts</h3>
     <br>
-    <!-- <p>Dualformer represents a promising advancement in making AI reasoning systems more adaptable and efficient. The approach demonstrates significant potential across multiple dimensions: it could scale to larger models while reducing computational costs, enable deployment in resource-constrained environments, and facilitate better human-AI collaboration through controllable reasoning depth. The hierarchical structure also opens possibilities for curriculum learning approaches that gradually build reasoning complexity during training.</p> -->
-    <!-- <p>However, several limitations constrain its immediate widespread adoption. The method's dependence on well-structured reasoning traces and domain-specific dropping strategies limits its applicability to arbitrary reasoning tasks. Testing has been confined to relatively small models and specific domains (maze navigation, puzzle-solving, and mathematical reasoning), leaving questions about scalability to larger language models and diverse reasoning challenges unanswered. The need for careful tuning of dropping probabilities suggests the approach may not achieve full domain-agnostic generalization.</p> -->
-    <!-- <p>Despite these constraints, Dualformer marks a significant step toward more flexible reasoning systems that can dynamically balance computational depth with task requirements. This adaptive capability could fundamentally transform how we deploy AI systems that must navigate the perpetual trade-off between speed and accuracy, particularly in real-world applications where both efficiency and reasoning quality are critical.</p> -->
+    <p>
+    Overall, Dualformer presents a compelling framework that bridges the gap between fast intuitive responses and deliberate reasoning by training models that can adapt to different thinking modes. 
+    <br>
+    What makes this work particularly thought-provoking is its technical reproducibility of human-like cognitive processes, the ability to seamlessly switch between System 1 and System 2 thinking patterns, while simultaneously reducing computational overhead through intelligent sequence shortening and learning from randomized reasoning traces.
+    <br>
+    The authors' choice to explore encoder-decoder architectures alongside the dominant decoder-only paradigm demonstrates refreshing architectural diversity and suggests potential avenues for sophisticated reasoning capabilities that extend beyond current approaches. It will be fascinating to see if this line of research and experimentation can make small reasoning models perform better and more generalizable. 
+    </p>
+    <p>In short, my key takeaways from the paper are:</p>
+    <ul>
+        <li>Process of thinking and technical reproducibility of that </li>
+        <li>Training a model to learn to think in fast and slow mode using randomized reasoning traces (elegance!)  </li>
+        <li>While encoding-only architectures excel and large decoder-only models continue to impress, the encoder-decoder approach explored in Dualformer emerges as potentially crucial for sophisticated thinking and reasoning capabilities (big fan!) </li>
+        <li>Kudos to all the authors and stakeholders who took this idea and produced quality studies with meaningful results (not all ideas are pursued, not all pursued ideas are successful, it is a hard process!)</li>
+    </ul>
+
 
     <p><b>Thanks for reading!</b></p>
     <!-- <br> -->
