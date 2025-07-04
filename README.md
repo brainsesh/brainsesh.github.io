@@ -2,56 +2,28 @@
 
 Welcome to **brainsesh**, a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**!
 
-<!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Tutorials**](#tutorials) -->
+This space is created to share learnings, thought experiments, and technical perspectives from contributors. Whether you're looking to discover insights about technical breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
 
 <div style="text-align: center;">
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
 
-<!-- <div style="text-align: center;">
-  <img src="./images/logo_round.jpg" alt="Brainsesh Logo" width="450"/>
-</div> -->
-
-This space is created to share learnings, thought experiments, and technical perspectives from contributors. Whether you're looking to discover insights about technical breakthroughs, explore scientific concepts, or just seek to broaden perspectives **brainsesh** is your go-to space.
-
----
-
-<!-- ## Techdrop -->
-<!-- Explore a collection of informal demonstrations of technical experiments. -->
-
-<!-- #### Conversational Assistant -->
-<!-- 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Conversational Assistant</a> – Interview with a language model to discover technical topics. -->
-
-<!-- --- -->
-
-## Tidbits
+<!-- ## Tidbits -->
+## Technical Reviews
 Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
 
-<!-- #### Technical Reviews -->
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
-<!-- 2. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Linear Algebra</a> – Hidden Language Behind Modern Technology -->
 
 <!-- ### Technology Trends
-1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Language Models</a> – Digital Minds Reshaping How We Communicate -->
+1. <a href="./docs/dualformer/index.html" target="_blank">Language Models</a> – XX -->
 
 ---
-
-<!-- ## Tutorials -->
-<!-- Explore a collection of tutorials that provide concise overviews of diverse topics. From fundamental principles to specialized techniques, these tutorials can serve as accessible entry points for expanding knowledge and skillset. -->
-
-<!-- 1. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Linear Algebra</a> – Hidden Language Behind Modern Technology
-2. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Neural Networks</a> – Where Mathematics Mimics the Mind
-3. <a href="./docs/the-art-of-brainstorming/index.html" target="_blank">Language Models</a> – Digital Minds Reshaping How We Communicate -->
-
-<!-- --- -->
 
 ## Disclaimer
 
-The content expressed on this website, including but not limited to articles, tutorials, blog posts, technical experiments, comments, and other materials, are solely the personal opinions of the contributors and do not represent or reflect the views, positions, technology, or policies of their respective employers, affiliated organizations, or the industries in which they work.
+The content expressed on this website, including but not limited to articles, tutorials, blog posts, technical experiments, comments, and other materials, are solely the personal opinions of the contributor(s) and do not represent or reflect the views, positions, technology, or policies of their respective employers, affiliated organizations, or the industries in which they work.
 
-Contributors share their thoughts based on personal experiences, learnings, experiments, and perspectives. Any information provided should not be construed as professional advice or as an official statement from any organization with which contributors may be associated.
-
-All content is provided for informational purposes only. Readers should exercise their own judgment when considering the views and opinions presented here.
+Any information provided should not be construed as professional advice or as an official statement from any organization with which contributors may be associated. All content is provided for informational purposes only. Readers should exercise their own judgment when considering the views and opinions presented here.
 
 ---
 
