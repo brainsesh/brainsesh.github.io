@@ -110,6 +110,19 @@
             align-items: center;
             gap: 10px;
         }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.3);
+            z-index: 1500;
+        }
+        .sidebar.open ~ .sidebar-overlay {
+            display: block;
+        }
         /* Responsive sidebar styles */
         @media (max-width: 900px) {
         .sidebar {
@@ -355,20 +368,14 @@
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
             sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
         }
-        // Optional: close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            var sidebar = document.getElementById('sidebar');
-            var toggle = document.querySelector('.sidebar-toggle');
-            if (
-                sidebar.classList.contains('open') &&
-                !sidebar.contains(event.target) &&
-                !toggle.contains(event.target)
-            ) {
-                sidebar.classList.remove('open');
-            }
-        });
+        document.getElementById('sidebarOverlay').onclick = function() {
+            document.getElementById('sidebar').classList.remove('open');
+            this.style.display = 'none';
+        };
     </script>
 </body>
 </html>
