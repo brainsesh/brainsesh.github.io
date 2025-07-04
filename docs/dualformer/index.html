@@ -85,7 +85,7 @@
 
     <p>The core innovation lies in structured trace dropping during training. Instead of training separate models for fast and slow reasoning, Dualformer learns from randomized reasoning traces where different parts are systematically dropped according to four hierarchical levels:<p>
     <ul>
-        <li><strong>Level 1:</strong> Drop "close" clauses from A* search (paper reference) traces</li>
+        <li><strong>Level 1:</strong> Drop "close" clauses from <em><a href="https://arxiv.org/pdf/2402.14083" target="_blank">A* search</a></em> traces</li>
         <li><strong>Level 2:</strong> Additionally drop cost information from remaining clauses</li>
         <li><strong>Level 3:</strong> Further drop 30% of "create" clauses randomly</li>
         <li><strong>Level 4:</strong> Drop the entire reasoning trace, keeping only the final solution</li>
@@ -179,7 +179,6 @@
     The evaluation shows consistent improvements from LLM finetuning, which proves that using this framework can be generalized. The key ideas is, if one were to finetune this framework for a specific reasoning task, one can achieve much better performance compared to baseline.
     </p>
     
-    <br>
     <!-- <div class="non-interactive-image">
         <img src="maze.jpg" alt="maze" title="experiments" style="width: 600px; height: auto;">
         <p><em>Inference Modes of Dualformer</em></p>
