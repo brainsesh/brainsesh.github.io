@@ -1,6 +1,6 @@
 <!-- # brainsesh -->
 
-Welcome to **brainsesh**, a space dedicated to **growth**, **reflection**, and **inspiration**!
+Welcome to **brainsesh**, a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**!
 
 <!-- [**Techdrop**](#techdrop) | [**Tidbits**](#tidbits) | [**Tutorials**](#tutorials) -->
 
@@ -8,7 +8,7 @@ Welcome to **brainsesh**, a space dedicated to **growth**, **reflection**, and *
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
 
-This space is created to share learnings, thought experiments, and personal blogs from contributors. Whether you're looking to explore intellectual curiosity, spark new thoughts or have meaningful technical conversations **brainsesh** is your go-to space.
+This space is created to share learnings, thought experiments, and technical perspectives from contributors. Whether you're looking to discover insights about technical breakthroughs, explore scientific concepts, or just seek to broaden perspectives **brainsesh** is your go-to space.
 
 ---
 
@@ -21,9 +21,9 @@ This space is created to share learnings, thought experiments, and personal blog
 <!-- --- -->
 
 ## Tidbits
-Explore a collection of short blogs that spark curiosity and inspire thought in Artificial Intelligence (AI), Applied Economics, Mathematics, and Behavioral Sciences.
+A collection of articles and technical reviews that make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
 
-#### Technical Paper
+#### Technical Review
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think: </a> Decoding Dualformer (bridging system 1 and system 2 thinking through transformers)
 
 
