@@ -237,7 +237,7 @@
 
     <p>Dualformer is a novel transformer-based architecture that integrates both fast and slow reasoning modes into a single model, inspired by this dual process theory. The model addresses a fundamental trade-off in AI reasoning systems: fast models are computationally efficient but less accurate, while slow models that generate detailed reasoning traces are more accurate but computationally expensive.</p>
 
-    <p>The core innovation lies in structured trace dropping during training. Instead of training separate models for fast and slow reasoning, Dualformer learns from <em><b>randomized reasoning traces</b></em> (think of this as set of steps required to complete a given task) where different parts are systematically dropped according to four hierarchical levels:<p>
+    <p>The core innovation lies in structured trace dropping during training. Instead of training separate models for fast and slow reasoning, Dualformer learns from <em><b>randomized reasoning traces</b></em> (think of this as a step by step process to complete a given task) where different parts are systematically dropped according to four hierarchical levels:<p>
     <ul>
         <li><strong>Level 1:</strong> Drop "close" (successful completion of individual steps) clauses from <em><a href="https://arxiv.org/pdf/2402.14083" target="_blank">A* search</a></em> traces</li>
         <li><strong>Level 2:</strong> Additionally drop cost information from remaining clauses</li>
@@ -296,27 +296,29 @@
         <p><em>Encoder-Decoder Architecture</em></p>
     </div>
 
-    <p>Most of the large generative models today use decoder-only framework. Dualformer uses the encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
+    <p>Most of the large generative models today use decoder-only framework. Dualformer uses encoder-decoder architecture, originally as explained in Attention is all you need <a href="https://arxiv.org/pdf/1706.03762" target="_blank">(Vaswani et al., 2017)</a> and T5 architecture <a href="https://arxiv.org/pdf/1910.10683" target="_blank">(Raffel et al., 2020)</a>. A few changes include the rotary position encoding (RoPE) and the format of sequences. The <b>&lt;prompt&gt;</b> goes into the encoder along with the task specification. Decoder processes either a <b>&lt;trace&gt;</b><b>&lt;plan&gt;</b> sequence (slow mode or search-augmented model) or only a <b>&lt;plan&gt;</b> sequence (fast mode or solution-only models).</p>
 
     <p>The models are instantiated with T5 and RoPE for position encoding, and trained with 100K training samples. Model sizes are 15M and 46M for Maze and Sokoban tasks respectively. </p>
 
-    <p>For the fast mode, Dualformer is trained on sequence data that only include the optimal final solution, without any reasoning trace. The slow mode baseline is the Complete-Trace model trained on data with complete A* search traces.</p>
+    <p>For the fast mode, Dualformer is trained on sequence data that only includes the optimal final solution without a reasoning trace. The slow mode baseline is the Complete-Trace model trained on data with complete A* search traces.</p>
 
     <h3>4. Experiments and Evidence </h3>
 
-    <p>I really liked the experimental design. The authors are basically trying to answer 3 key questions which align with not only the thinking process but also how one would want to use a large language model today for reasoning. Here are the 3 questions around which the experiments are conducted,</p>
+    <p>I really liked the experimental design. The authors are basically trying to answer the below key questions which align not only the thinking process, but also how one would want to use a large language model today for reasoning:</p>
     <ul>
         <li>Does Dualformer outperform corresponding baselines in fast, slow and auto mode? Does it generate more diverse plans? </li>
         <li>In slow model, does Dualformer lead to faster reasoning, i.e., output a shorter trace?</li>
         <li>Does the structured trace dropping technique generalize to LLMs trained on natural language datasets?</li>
     </ul>
 
-    <p>In terms of evaluation process, whether a model generates correct and optimal plans is measured using two metrics: <b>1-Solved-64</b> and <b>1-Optimal-64</b>. </p>
+    <p>In terms of the evaluation process, whether a model generates correct or optimal plans is measured using two metrics: <b>1-Solved-64</b> and <b>1-Optimal-64</b>. </p>
     <ul>
         <li>64 responses are randomly sampled from a trained model </li>
         <li>Each response is parsed and evaluated regardless of the generated trace part</li>
-        <li>If any of the 64 plans is correct, i.e. is feasible and reaches the goal location, this task is labelled as success for the 1-Solved-64 metric</li>
-        <li>If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric </li>
+        <ul>
+            <li>1-Solved-64 metric: If any of the 64 plans is correct, i.e. plan is feasible and reaches the goal/finish, this task is labelled as success for the 1-Solved-64 metric</li>
+            <li>1-Optimal-64 metric:If any of the 64 plans is optimal, this task is labelled as success for the 1-Optimal-64 metric </li>
+        </ul>
         <li>This is repeated for 1000 unseen evaluation tasks and report the average success rate</li>
         <li>To investigate the robustness of each method, metrics 3-Solved-64 and 3-Optimal-64, where a task is labelled as success if at least 3 plans are correct or optimal are also reported</li>
     </ul>
@@ -332,9 +334,9 @@
     <p>
     To answer the third question, “does the structured trace dropping technique generalize to LLMs trained on natural language datasets?”, the authors conducted mathematical reasoning experiments by fine-tuning Llama-3.1-8B and Mistral-7B models on the Aug-MATH dataset. 
     <br> <br>
-    This Aug-MATH dataset creation is a nice piece of experiment in itself. The dataset is derived from the MATH dataset (Hendrycks et al., 2021) that contains 7500 training examples of math questions and solutions, and 5000 testing examples. They take this data and use Llama-3.1-70B-Instruct model to rewrite the solutions with detailed intermediate steps. And then to introduce diversity, they sample 4 responses for each question. This produces an overall dataset of 30K training examples and 5K testing examples. 
+    This Aug-MATH dataset creation is a nice experiment in itself. The dataset is derived from the MATH dataset (Hendrycks et al., 2021) that contains 7500 train and 5000 test examples of math questions and solutions. They take this data and use Llama-3.1-70B-Instruct model to rewrite the solutions with detailed intermediate steps. And then to introduce diversity, they sample 4 responses for each question. This produces an overall dataset of 30K training examples and 5K testing examples. 
     <br>  <br>   
-    The evaluation shows consistent improvements from LLM finetuning, which proves that using this framework can be generalized. The key ideas is, if one were to finetune this framework for a specific reasoning task, one can achieve much better performance compared to baseline.
+    The evaluation shows consistent improvements from LLM finetuning, which proves that using this framework can be generalized. The key idea is that if one were to finetune this framework for a specific reasoning task, one can achieve much better performance compared to baseline.
     </p>
     
     <!-- <div class="non-interactive-image">
@@ -352,11 +354,11 @@
     
     <p>In short, my key takeaways from the paper are:</p>
     <ul>
-        <li>Process of thinking and technical reproducibility of that </li>
-        <li>Training a model to learn to think in fast and slow mode using randomized reasoning traces (elegance!)  </li>
-        <li>While encoding-only architectures excel and large decoder-only models continue to impress, the encoder-decoder approach explored in Dualformer emerges as potentially crucial for sophisticated thinking and reasoning capabilities (big fan!) </li>
+        <li>Potential method for replicating dual-process thinking technically</li>
+        <li>Training a model capable of learning both fast and slow modes of thinking by utilizing randomized reasoning traces </li>
+        <li>While encoding-only architectures excel and large decoder-only models continue to impress, the encoder-decoder approach explored in Dualformer emerges as potentially crucial for sophisticated thinking and reasoning capabilities </li>
     </ul>
-    <p>Kudos to all the authors and stakeholders who took this idea and produced quality studies with meaningful results (not all ideas are pursued, not all pursued ideas are successful, it is a hard process!)</p>
+    <p>Kudos to all the authors and stakeholders who took this idea and produced quality studies with meaningful results. Not all ideas are pursued, those that do aren’t always successful. It is a hard process!</p>
     <br>
 
     <p><b>Thanks for reading!</b></p>
@@ -364,6 +366,7 @@
     <p style="font-size: 0.9em; line-height: 1.2;">
         <em>For more information, read the paper <a href="https://arxiv.org/pdf/2410.09918v1" target="_blank">here</a>. For more articles like this, visit <a href="https://brainsesh.github.io/" target="_blank">blog</a>.</em><br>
         <em>If you have any questions and/or feedback, feel free to reach out at <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a></em><br>
+        <em>The views in this article are those of the contributor alone and do not represent their employers or affiliated organizations. This information is for informational purposes only and should not be taken as professional advice or an official statement. Readers should use their own judgment when evaluating the opinions presented. </em>
         <!-- <em>This article is licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank">CC BY 4.0</a></em> <br> -->
         <!-- <em>Research Partners: Ryan Borowicz, Claude Sonnet 4, illuminate.google.com</em><br> -->
     </p>
