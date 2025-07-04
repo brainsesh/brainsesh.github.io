@@ -142,14 +142,14 @@
             padding: 0 10px;
         }*/
          .main-content {
-            margin-top: 60px; /* Adjust as needed for your button height */
+            margin-top: 80px; /* Adjust as needed for your button height */
         }
         .sidebar-toggle {
             display: block;
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 1500;  /* Lower than sidebar's 2000 */
+            z-index: 2500;  /* Lower than sidebar's 2000 */
             background: #0056b3;
             color: #fff;
             border: none;
@@ -177,12 +177,12 @@
                     Home
                 </a>
             </h2>
-            <!-- <h3>Technical Reviews</h3> -->
-            <!-- <ul> -->
-                <!-- <li><a href="/docs/dualformer/index.html">Dualformer</a></li> -->
+            <h3>Technical Reviews</h3>
+            <ul>
+                <li><a href="/docs/dualformer/index.html">Learning to Think - Decoding Dualformer</a></li>
                 <!-- <li><a href="/docs/the-art-of-brainstorming/index.html">Searchformer</a></li> -->
                 <!-- <li><a href="/docs/the-art-of-brainstorming/index.html">Llama-3.1</a></li> -->
-            <!-- </ul> -->
+            </ul>
             <!-- <h3>Technology Trends</h3> -->
             <!-- <ul> -->
                 <!-- <li><a href="/docs/the-art-of-brainstorming/index.html">Something 1</a></li> -->
@@ -369,7 +369,7 @@
     </div>
     </div>
     <script>
-        function toggleSidebar() {
+        /*function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             var overlay = document.getElementById('sidebarOverlay');
             sidebar.classList.toggle('open');
@@ -378,7 +378,26 @@
         document.getElementById('sidebarOverlay').onclick = function() {
             document.getElementById('sidebar').classList.remove('open');
             this.style.display = 'none';
-        };
+        }; */
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            var toggleBtn = document.querySelector('.sidebar-toggle');
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+            // Hide the button when sidebar is open (on mobile)
+            if (window.innerWidth <= 900) {
+                toggleBtn.style.display = sidebar.classList.contains('open') ? 'none' : 'block';
+            }
+        }
+        window.addEventListener('resize', function() {
+            var toggleBtn = document.querySelector('.sidebar-toggle');
+            if (window.innerWidth > 900) {
+                toggleBtn.style.display = 'none';
+            } else {
+                toggleBtn.style.display = document.getElementById('sidebar').classList.contains('open') ? 'none' : 'block';
+            }
+        });
     </script>
 </body>
 </html>
