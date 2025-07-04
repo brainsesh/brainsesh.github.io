@@ -8,6 +8,8 @@ This space is created to share learnings, thought experiments, and technical per
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
 </div>
 
+---
+
 <!-- ## Tidbits -->
 ## Technical Reviews
 Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
