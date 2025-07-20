@@ -18,7 +18,7 @@ This space is created to share technical perspectives, thought experiments, and 
 Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
 
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
-2. <a href="./docs/software3/index.html" target="_blank">Changing Technology Landscape - AI Software </a> : Navigating Software 1.0 → 2.0 → 3.0
+2. <a href="./docs/software3/index.html" target="_blank">Beyond Programming - Changing Technology Landscape </a> : Navigating Software 1.0 → 2.0 → 3.0
 
 ---
 
