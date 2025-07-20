@@ -19,8 +19,6 @@ Collection of articles and technical reviews that aim to make ideas in Artificia
 
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
 2. <a href="./docs/software3/index.html" target="_blank">Changing Technology Landscape - AI Software </a> : Navigating Software 1.0 → 2.0 → 3.0
-<!-- ### Technology Trends
-1. <a href="./docs/dualformer/index.html" target="_blank">Language Models</a> – XX -->
 
 ---
 
