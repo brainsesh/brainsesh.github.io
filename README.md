@@ -4,6 +4,8 @@ Welcome to **brainsesh**, a session in your brain where thoughts collide, ideas 
 
 This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**, where every brainsesh leaves you a little more enlightened and a lot more curious about the ongoing innovation.
 
+[**Technical Reviews**](#technicalreviews) | [**Mindset Reset**](#mindsetreset) 
+
 <div style="text-align: center;">
   <br>
   <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
@@ -23,7 +25,6 @@ Collection of articles and technical reviews that aim to make ideas in Artificia
 
 ---
 
-<!-- ## Tidbits -->
 ## Mindset Reset
 Articles and thoughts on resilience, courage, and what it means to show up — exploring ideas that inspire us to keep going and growing stronger.
 
