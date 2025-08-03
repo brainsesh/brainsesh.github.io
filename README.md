@@ -1,8 +1,8 @@
 <!-- # brainsesh -->
 
-Welcome to **brainsesh**, a session in your brain where thoughts collide, ideas spark, and neurons throw the best party in town! This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**, where every brainsesh leaves you a little more enlightened and a lot more curious about the ongoing innovation.
+Welcome to **brainsesh**, a session in your brain where thoughts collide, ideas spark, and neurons throw the best party in town! 
 
-This space is created to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
+This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**, where every brainsesh leaves you a little more enlightened and a lot more curious about the ongoing innovation.
 
 <div style="text-align: center;">
   <br>
@@ -10,6 +10,8 @@ This space is created to share technical perspectives, thought experiments, and 
 </div>
 
 <br>
+
+This space is created to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
 
 ---
 
