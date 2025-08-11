@@ -18,12 +18,17 @@ This space is created to share technical perspectives, thought experiments, and 
 ---
 
 ## Technical Reviews
-Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Applied Economics, Mathematics, and Behavioral Sciences, accessible and fascinating.
+Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Machine Learning, Mathematics, and Applied Economics, accessible and fascinating.
 
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
 2. <a href="./docs/software3/index.html" target="_blank">Beyond Programming - Changing Technology Landscape </a> : Navigating Software 1.0 → 2.0 → 3.0
 
----
+
+## Developer Toolkits
+Practical guides and insights into models, frameworks, and tools to build modern AI systems.
+
+1. <a href="./docs/async_api/index.html" target="_blank">Building Robust AI Systems </a> : Engineer's Guide to Modern Architecture Design & Framework
+
 
 ## Mindset Reset
 Articles and thoughts on resilience, courage, and what it means to show up — exploring ideas that inspire us to keep going and growing stronger.
