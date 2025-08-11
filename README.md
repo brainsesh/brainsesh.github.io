@@ -1,6 +1,6 @@
 <!-- # brainsesh -->
 
-Welcome to **brainsesh**, a session in your brain where thoughts collide, ideas spark, and neurons throw the best party in town! 
+Welcome to **brainsesh**, brain-session where thoughts collide, ideas spark, and neurons throw the best party in town! 
 
 This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**, where every brainsesh leaves you a little more enlightened and a lot more curious about the ongoing innovation.
 
