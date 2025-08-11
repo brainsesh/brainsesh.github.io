@@ -4,7 +4,7 @@ Welcome to **brainsesh**, a session in your brain where thoughts collide, ideas 
 
 This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**, where every brainsesh leaves you a little more enlightened and a lot more curious about the ongoing innovation.
 
-[**Technical Reviews**] | [**Developer Toolkits**] | [**Mindset Reset**]
+[**Technical Reviews**](#technical-reviews) | [**Developer Toolkits**](#developer-toolkits) | [**Mindset Reset**](#mindset-reset)
 
 <div style="text-align: center;">
   <br>
