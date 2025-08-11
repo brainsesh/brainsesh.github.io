@@ -253,7 +253,7 @@
     <p>The journey of web API development reflects the broader evolution of web technologies and developer needs. <b>REST APIs</b> established foundational principles using HTTP methods (GET, POST, PUT, DELETE) with resource-based URLs. While REST provided structure and standardization, implementing REST APIs required extensive boilerplate code, manual request parsing, and careful attention to HTTP protocol details. </p>
     <p><b>Flask</b> emerged as a game-changer in the Python ecosystem, introducing a minimalist, WSGI-based approach that abstracted away much of the HTTP complexity. As a micro-framework, Flask provides essential routing and request handling while maintaining the philosophy of leaving most architectural decisions to developers. With Flask, you manually handle request parsing, validation, and response serialization, but within a much more manageable framework structure.</p>
     <div class="non-interactive-image">
-        <img src="flask.png" alt="flask_code" title="Flask API Design" style="width: 500px; height: auto;">
+        <img src="flask.png" alt="flask_code" title="Flask API Design" style="width: 450px; height: auto;">
         <p><em>Flask API Design</em></p>
     </div>
     <p>As we can see from this flask example, routing and request handling is performed with decorators, and input validation is done manually within the function. The endpoint receives JSON, explicitly checks for the message field, sets a default temperature if missing, and then calls a processing pipeline before returning a JSON response.</p>
