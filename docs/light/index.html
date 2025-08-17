@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Collection of Light</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0; /* original 20px */
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto 0 auto;
+            position: relative;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        .interactive-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .interactive-image img {
+            width: 450px; 
+            height: auto; 
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block; 
+            margin: 0 auto; 
+        }
+        .interactive-image img:hover {
+            transform: scale(2.5);
+        }
+        .non-interactive-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .non-interactive-image img {
+            width: 450px; /* Fixed width */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Ensures the image is centered */
+            margin: 0 auto; /* Centers the image horizontally */
+        }
+        .highlight {
+            background-color: #f0f8ff;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background: #f5f8fa;
+            border-right: 1px solid #ddd;
+            padding: 30px 15px 15px 15px;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        .sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .sidebar ul li a:hover {
+            color: #0056b3;
+        }
+        .main-content {
+            margin-left: 320px;
+            padding: 0 20px;
+        }
+        .sidebar-linkedin {
+            position: absolute;
+            left: 5%;
+            bottom: 30px;
+            /* transform: translateX(-5%); */
+            text-align: left;
+        }
+        .sidebar-linkedin img.profile-pic {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid #0056b3;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.2s;
+        }
+        .sidebar-linkedin img.profile-pic:hover {
+            box-shadow: 0 4px 16px rgba(0,86,179,0.18);
+        }
+        .sidebar-linkedin a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.3);
+            z-index: 1500;
+        }
+        .sidebar.open ~ .sidebar-overlay {
+            display: block;
+        }
+        /* Responsive sidebar styles */
+        @media (max-width: 900px) {
+        .sidebar {
+            position: fixed;
+            left: -320px;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            transition: left 0.3s;
+            z-index: 2000;
+        }
+        .sidebar.open {
+            left: 0;
+        }
+        /*.main-content { 
+            margin-left: 0;
+            padding: 0 10px;
+        }*/
+         .main-content {
+            margin-left: 0; /* <-- Fix: remove left margin on mobile */
+            margin-top: 80px; /* Adjust as needed for your button height */
+            padding: 0 10px;
+        }
+        .sidebar-toggle {
+            display: block;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2500;  /* Lower than sidebar's 2000 */
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        }
+        @media (min-width: 901px) {
+        .sidebar-toggle {
+            display: none;
+        }
+        }
+    </style>
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <!-- <h2><a href="/index.html">Home</a></h2> -->
+            <h2>
+                <a href="/index.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="/images/home.jpg" alt="Home" style="width: 24px; height: 24px; vertical-align: middle;">
+                    Home
+                </a>
+            </h2>
+            <h2>Technical Reviews</h2>
+            <ul>
+                <li style="font-size: 0.85em;"><a href="/docs/dualformer/index.html">Learning to Think - Decoding Dualformer</a></li>
+                <li style="font-size: 0.85em;"><a href="/docs/software3/index.html">Beyond Programming - Changing Technology Landscape</a></li>
+            </ul>
+            <h2>Developer Toolkits</h2> 
+            <ul>
+                <li style="font-size: 0.85em;"><a href="/docs/async_api/index.html">Building Robust AI Systems</a></li>
+            </ul>
+            <h2>Mindset Reset</h2>
+            <ul>
+                <li style="font-size: 0.85em;"><a href="/docs/arena/index.html">Step into the Arena</a></li>
+                <li style="font-size: 0.85em;"><a href="/docs/light/index.html">A Collection of Light</a></li>
+            </ul>       
+            <div class="sidebar-linkedin">
+                <a href="https://www.linkedin.com/in/lavanya-basavaraju/" target="_blank" title="Connect on LinkedIn">
+                    <img src="/images/LB_photo.jpg" alt="Lavanya Basavaraju" class="profile-pic" />
+                    Lavanya Basavaraju
+                </a>
+            </div>
+        </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="main-content">
+    <h1>A Collection of Light</h1>
+    <p><em>(Brighter thoughts for darker days)</em></p>
+    <p style="font-size: 0.9em; line-height: 1.3;">
+        <em><b>Author:</b> <a href="https://www.linkedin.com/in/lavanya-basavaraju/" target="_blank">Lavanya Basavaraju</a>; Published on August 17, 2025 </em><br>
+        <em>If you have any questions and/or feedback, feel free to reach out at <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a></em>
+    </p>
+
+
+    <p>Some days we just need a gentle reminder that we’re stronger and more capable than we think. This little corner of my blog is where I gather the words that lift me when I need the most encouragement - quotes, reflections, and words of wisdom - the little sparks that help me pause, shift perspective, and rediscover my own strength.</p>
+
+    <p>Whether you’re reaching for big dreams, moving through challenges, or simply seeking a spark of encouragement in your day, I hope you’ll find something here that resonates. Sometimes the right words at the right time are all it takes to remind us of how resilient and capable we truly are.</p>
+    <p><b>Come back anytime - this collection is always growing, just like we all are!</b></p>
+
+    <br>
+    
+    <hr style="border: 0.8px solid #000; width: 100%;">
+    <p><em>
+    The merit of a person is not in the knowledge they possess, but in the effort they made to achieve it. </em> -  (modified version) Gotthold Ephraim Lessing
+    </p>
+
+    <hr style="border: 0.8px solid #000; width: 100%;">
+    <p><em>
+    <span style="color:blue;">Success is built in rooms no one would photograph.</span> The people who change things aren't at the parties, they're home on Friday night, obsessed with problems everyone else finds tedious. Their social media doesn’t look all that extraordinary. Their daily life is not extraordinary. Just the same unsexy routine, day after day. They aren't doing anything glamorous. They're just consistently making steady incremental progress over a long period of time. Success makes noise. Building doesn't. That's the paradox: <b>Exceptional looks boring until suddenly it isn't</b>.
+    </em></p>
+
+    <hr style="border: 0.8px solid #000; width: 100%;">
+    <p><em>
+    Everyone knows what works. Few persist when the novelty fades and it is not exciting anymore.
+    </em></p>
+     
+    <hr style="border: 0.8px solid #000; width: 100%;">
+    <p><em>
+    <span style="color:blue;">Work smarter, not harder</span> is often framed as the opposite of hard work, but working smart is itself a derivative of hard work. You have to work hard just to figure out what working smart means. When you start something new, you can’t work smart because you don’t yet know what smart looks like. You have to work hard first, identify the pattern that makes smart possible. It’s like a chess master spotting the best move instantly; it looks like working smart, but it’s built on thousands of hours of working hard to earn that intuition. <b>Smarter approaches aren’t universal shortcuts, they’re contextual insights uncovered through deep, sustained effort.</b>
+    </em></p>
+    
+   
+    <hr style="border: 0.8px solid #000; width: 100%;">
+    <br>
+    <p><b>References</b></p>
+    <p>Leo Tolstoy: A Calendar of Wisdom. Link to <a href="https://calofwisdom.com" target="_blank">calendar</a>.</p>
+    <p>Shane Parrish’s <a href="https://fs.blog/blog/" target="_blank">collection</a> of tiny thoughts, insights, and articles. </p>
+    <br>
+    <div class="non-interactive-image">
+        <img src="tolstoy.png" alt="code" title="A Calendar of Wisdom" style="width: 300px; height: auto; ">
+    </div>
+
+    <p><b>Thanks for reading!</b></p>
+    <!-- <br> -->
+    <p style="font-size: 0.9em; line-height: 1.2;">
+        <em>For more articles like this, visit <a href="https://brainsesh.github.io/" target="_blank">blog</a>.</em><br>
+        <em>If you have any questions and/or feedback, feel free to reach out at <a href="mailto:brainsesh@gmail.com">brainsesh@gmail.com</a></em><br>
+        <em>The views in this article are those of the contributor alone and do not represent their employers or affiliated organizations. This information is for informational purposes only and should not be taken as professional advice or an official statement. Readers should use their own judgment when evaluating the opinions presented. </em>
+        <!-- <em>This article is licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank">CC BY 4.0</a></em> <br> -->
+        <!-- <em>Research Partners: Ryan Borowicz, Claude Sonnet 4, illuminate.google.com</em><br> -->
+    </p>
+
+    </div>
+    </div>
+    <script>
+        /*function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        }
+        document.getElementById('sidebarOverlay').onclick = function() {
+            document.getElementById('sidebar').classList.remove('open');
+            this.style.display = 'none';
+        }; */
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            var toggleBtn = document.querySelector('.sidebar-toggle');
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+            // Hide the button when sidebar is open (on mobile)
+            if (window.innerWidth <= 900) {
+                toggleBtn.style.display = sidebar.classList.contains('open') ? 'none' : 'block';
+            }
+        }
+        document.getElementById('sidebarOverlay').onclick = function() {
+            document.getElementById('sidebar').classList.remove('open');
+            this.style.display = 'none';
+            // Show the toggle button again
+            if (window.innerWidth <= 900) {
+                document.querySelector('.sidebar-toggle').style.display = 'block';
+            }
+        };
+        // Optional: Hide sidebar if window resized to desktop
+        window.addEventListener('resize', function() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            var toggleBtn = document.querySelector('.sidebar-toggle');
+            if (window.innerWidth > 900) {
+                sidebar.classList.remove('open');
+                overlay.style.display = 'none';
+                toggleBtn.style.display = 'none';
+            } else {
+                toggleBtn.style.display = sidebar.classList.contains('open') ? 'none' : 'block';
+            }
+        });
+        /*window.addEventListener('resize', function() {
+            var toggleBtn = document.querySelector('.sidebar-toggle');
+            if (window.innerWidth > 900) {
+                toggleBtn.style.display = 'none';
+            } else {
+                toggleBtn.style.display = document.getElementById('sidebar').classList.contains('open') ? 'none' : 'block';
+            }
+        });*/
+    </script>
+</body>
+</html>
