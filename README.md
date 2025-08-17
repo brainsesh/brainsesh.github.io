@@ -36,7 +36,7 @@ Practical guides and insights into models, frameworks, and tools to build modern
 Articles and thoughts on resilience, courage, and what it means to show up — exploring ideas that inspire us to keep going and growing stronger.
 
 1. <a href="./docs/arena/index.html" target="_blank">Step into the Arena </a> : Dare. Strive. Create. You belong in the Arena.
-2. <a href="./docs/light/index.html" target="_blank">A Collection of Light </a> : Brighter thoughts for darker days. [growing]
+2. <a href="./docs/light/index.html" target="_blank">A Collection of Light </a> : Brighter thoughts for darker days.
 
 ---
 
