@@ -22,6 +22,8 @@ Collection of articles and technical reviews that aim to make ideas in Artificia
 
 1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
 2. <a href="./docs/software3/index.html" target="_blank">Beyond Programming - Changing Technology Landscape </a> : Navigating Software 1.0 → 2.0 → 3.0
+3. <a href="./docs/matformer/index.html" target="_blank">MatFormer - Train Once Deploy Infinitely </a> : Matryoshka, the nested intelligence that unlocks universal flexibility
+
 
 ---
 
