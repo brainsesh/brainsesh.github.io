@@ -380,14 +380,14 @@
     </p>
 
     <p><b>Brief technical explanation on this key decision: </b></p>
-    <p>Feed-Forward Network (FFN) block dominates the transformer models because it contains approximately twice as many parameters as the multi-head attention mechanism in each layer. This is an easy approximation to make with the original transformer block design.
+    <p>Feed-Forward Network (FFN) block dominates the transformer models because it contains approximately twice as many parameters as the multi-head attention mechanism in each layer. This is an approximation we can make with the original transformer block design.
     </p>
     <p>The attention mechanism uses four projection matrices (<i>Q</i><sub>w</sub>, <i>Q</i><sub>v</sub>, <i>Q</i><sub>k</sub>, <i>Q</i><sub>o</sub>) totaling, </p>
     <p align="center"><i>P</i><sub>attention</sub>  ≈ 4 <i>d</i><sub>model</sub>^2 parameters</p>
 
     <p>The FFN employs two linear layers with an intermediate expansion giving, </p>
     <p align="center"><i>P</i><sub>FFN</sub> = 2×<i>d</i><sub>model</sub>×<i>d</i><sub>ff</sub> ≈ 8<i>d</i><sub>model</sub>^2 parameters</p>
-    <p align="center">because typically <i>d</i><sub>ff</sub> ≈ 4<i>d</i><sub>model</sub></p>
+    <p align="center">because typically <i>d</i><sub>ff</sub> ≈ 4<i>d</i><sub>model</sub> , in BERT  <i>d</i><sub>model</sub> = 768 and <i>d</i><sub>ff</sub> = 3072 </p>
 
     <p>This 2:1 ratio means FFN accounts for roughly 66% of parameters within transformer layers, and when considering embeddings and other components, FFN still constitutes approximately 52-60% of the entire model's parameters across standard architectures like BERT, GPT, and Vision Transformers. MatFormer exploits this dominance by introducing nested structure exclusively in the FFN block, enabling elastic inference where hundreds of accurate submodels can be extracted without additional training. Also, by keeping everything else same this creates a strong hypothesis to test. 
     </p>
