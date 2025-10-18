@@ -382,9 +382,9 @@
     <p><b>Brief technical explanation on this key decision: </b></p>
     <p>Feed-Forward Network (FFN) block dominates the transformer models because it contains approximately twice as many parameters as the multi-head attention mechanism in each layer. This is an approximation we can make with the original transformer block design.
     </p>
-    <p>The attention mechanism uses four projection matrices (<i>Q</i><sub>w</sub>, <i>Q</i><sub>v</sub>, <i>Q</i><sub>k</sub>, <i>Q</i><sub>o</sub>) totaling, </p>
+    <p>The attention mechanism uses four projection matrices (<i>W</i><sub>q</sub>, <i>W</i><sub>v</sub>, <i>W</i><sub>k</sub>, <i>W</i><sub>o</sub>) totaling, </p>
     <p align="center"><i>P</i><sub>attention</sub>  ≈ 4 <i>d</i><sub>model</sub>^2 parameters</p>
-
+    <p align="center">because each <i>W</i> has <i>d</i><sub>model</sub>^2 + <i>d</i><sub>model</sub> ≈ <i>d</i><sub>model</sub>^2 parameters , in BERT this is (768^2 + 768) ≈ 768^2 parameters</p>
     <p>The FFN employs two linear layers with an intermediate expansion giving, </p>
     <p align="center"><i>P</i><sub>FFN</sub> = 2×<i>d</i><sub>model</sub>×<i>d</i><sub>ff</sub> ≈ 8<i>d</i><sub>model</sub>^2 parameters</p>
     <p align="center">because typically <i>d</i><sub>ff</sub> ≈ 4<i>d</i><sub>model</sub> , in BERT  <i>d</i><sub>model</sub> = 768 and <i>d</i><sub>ff</sub> = 3072 </p>
