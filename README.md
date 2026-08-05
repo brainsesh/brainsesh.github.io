@@ -1,8 +1,8 @@
 <!-- # brainsesh -->
 
-Welcome to **brainsesh**, brain-session where thoughts collide, ideas spark, and neurons throw the best party in town! 
+Welcome to **brainsesh**, brain-session!
 
-This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**, where every brainsesh leaves you a little more enlightened and a lot more curious about the ongoing innovation.
+This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**. The goal is to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
 
 [**Technical Reviews**](#technical-reviews) | [**Developer Toolkits**](#developer-toolkits) | [**Mindset Reset**](#mindset-reset)
 
@@ -13,7 +13,6 @@ This is a space dedicated to **learning**, **growth**, **reflection**, and **ins
 
 <br>
 
-This space is created to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
 
 ---
 
@@ -37,8 +36,7 @@ Practical guides and insights into models, frameworks, and tools to build modern
 ## Mindset Reset
 Articles and thoughts on resilience, courage, and what it means to show up — exploring ideas that inspire us to keep going and growing stronger.
 
-1. <a href="./docs/arena/index.html" target="_blank">Step into the Arena </a> : Dare. Strive. Create. You belong in the Arena.
-2. <a href="./docs/light/index.html" target="_blank">A Collection of Light </a> : Brighter thoughts for darker days.
+<a href="./docs/light/index.html" target="_blank">A Collection of Light </a> : Brighter thoughts for darker days.
 
 ---
 
