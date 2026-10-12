@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { SITE } from '../site.config';
+import { getPosts, postUrl } from '../lib/posts';
+
+const recent = (await getPosts()).slice(0, 3);
+const archive = SITE.newsletter.buttondown ? `https://buttondown.com/${SITE.newsletter.buttondown}/archive/` : null;
+---
+
+<Base title="Newsletter" description={`${SITE.newsletter.name}: ${SITE.newsletter.pitch}`}>
+  <div class="wrap page">
+    <div class="col">
+      <header class="page-head">
+        <h1 class="page-title">The {SITE.newsletter.name} newsletter</h1>
+        <p class="page-intro">
+          When I publish something new, subscribers get an email about it. Paper reviews, engineering notes, and AI
+          in finance and healthcare. Nothing else, and you can unsubscribe with one click.
+        </p>
+      </header>
+
+      <Newsletter heading="Subscribe" />
+
+      <section class="what" aria-labelledby="what-h">
+        <h2 id="what-h" class="section-heading"><span>Recent pieces</span></h2>
+        <ul>
+          {
+            recent.map((p) => (
+              <li>
+                <a href={postUrl(p)}>{p.data.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+        {archive && <p class="archive">Past emails are in the <a href={archive}>newsletter archive</a>.</p>}
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .what {
+    margin-top: 3.5rem;
+  }
+  ul {
+    margin: 0;
+    padding-left: 1.2em;
+    font-family: var(--serif);
+    font-size: 1.125rem;
+  }
+  li + li {
+    margin-top: 0.5rem;
+  }
+  li a {
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.2em;
+  }
+  .archive {
+    color: var(--ink-2);
+    margin-top: 1.5rem;
+  }
+  .archive a {
+    color: var(--accent);
+  }
+</style>

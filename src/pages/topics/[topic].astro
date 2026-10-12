@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { TOPICS, type TopicKey } from '../../site.config';
+import { getPosts, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return (Object.keys(TOPICS) as TopicKey[]).map((topic) => ({
+    params: { topic },
+    props: { topic, posts: posts.filter((p) => p.data.topic === topic) },
+  }));
+}
+
+const { topic, posts } = Astro.props as { topic: TopicKey; posts: Post[] };
+const t = TOPICS[topic];
+---
+
+<Base title={t.label} description={t.description}>
+  <div class="wrap page" style={`--t: ${t.color}`}>
+    <div class="col">
+      <header class="page-head topic-head">
+        <h1 class="page-title">{t.label}</h1>
+        <p class="page-intro">{t.description}</p>
+        {t.disclaimer && <p class="note">{t.disclaimer}</p>}
+      </header>
+
+      {
+        posts.length > 0 ? (
+          <PostList posts={posts} hideTopic byYear={posts.length > 8} />
+        ) : (
+          <p class="empty-note">
+            Nothing published here yet. The first pieces are in progress. Subscribe below to get them by email.
+          </p>
+        )
+      }
+    </div>
+    <div class="nl">
+      <Newsletter />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .topic-head {
+    border-top: 4px solid var(--t);
+    padding-top: 1.5rem;
+  }
+  .note {
+    margin: 1.25rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+  .nl {
+    margin-top: 4rem;
+  }
+</style>

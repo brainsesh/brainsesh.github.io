@@ -1,61 +1,36 @@
-<!-- # brainsesh -->
+# Lavanya Basavaraju: writing on AI, finance and healthcare
 
-Welcome to **brainsesh**, brain-session!
+Source for my personal site: paper reviews, engineering guides, talk notes and essays on AI models and engineering, AI in finance and AI in healthcare.
 
-This is a space dedicated to **learning**, **growth**, **reflection**, and **inspiration**. The goal is to share technical perspectives, thought experiments, and learnings from contributor(s). Whether you're looking to discover insights about innovative breakthroughs, explore scientific concepts, or just seek to broaden perspectives brainsesh is your go-to space.
+Built with [Astro](https://astro.build), written in Markdown, deployed to GitHub Pages by GitHub Actions. No servers, no database, no monthly bill.
 
-[**Technical Reviews**](#technical-reviews) | [**Developer Toolkits**](#developer-toolkits) | [**Mindset Reset**](#mindset-reset)
+**How to write, publish and maintain the site: see [RUNBOOK.md](./RUNBOOK.md).**
 
-<div style="text-align: center;">
-  <br>
-  <img src="./images/logo.jpg" alt="Brainsesh Logo" width="450"/>
-</div>
+## Quick start
 
-<br>
+```bash
+npm install          # once, after cloning
+npm run dev          # local preview at http://localhost:4321 (drafts included)
+npm run new -- "My post title" --type paper-review --topic ai-ml
+npm run build        # what CI runs: builds the site and the search index into dist/
+```
 
+Requires Node.js 22.12 or newer.
 
----
+## Where things live
 
-## Technical Reviews
-Collection of articles and technical reviews that aim to make ideas in Artificial Intelligence, Machine Learning, Mathematics, and Applied Economics, accessible and fascinating.
+| You want to change | Edit |
+| --- | --- |
+| A post | `src/content/writing/<slug>/index.md` (images sit next to it) |
+| Site name, links, newsletter, domain, topics, menu | `src/site.config.ts` |
+| Projects page | `src/data/projects.yaml` |
+| Reading list on the Papers page | `src/data/reading.yaml` |
+| Colors and fonts | `src/styles/global.css` (tokens at the top) |
+| Home page copy | `src/pages/index.astro` |
+| About page | `src/pages/about.astro` |
+| Article layout | `src/layouts/Article.astro` |
+| Post templates used by `npm run new` | `templates/` |
 
-1. <a href="./docs/dualformer/index.html" target="_blank">Learning to Think - Decoding Dualformer </a> : Bridging system 1 and system 2 thinking through transformers
-2. <a href="./docs/software3/index.html" target="_blank">Beyond Programming - Changing Technology Landscape </a> : Navigating Software 1.0 → 2.0 → 3.0
-3. <a href="./docs/matformer/index.html" target="_blank">MatFormer - Train Once Deploy Infinitely </a> : Matryoshka, the nested intelligence that unlocks universal flexibility
+## License
 
-
----
-
-## Developer Toolkits
-Practical guides and insights into models, frameworks, and tools to build modern AI systems.
-
-1. <a href="./docs/async_api/index.html" target="_blank">Building Robust AI Systems </a> : Engineer's Guide to Modern Architecture Design & Framework
-
----
-
-## Mindset Reset
-Articles and thoughts on resilience, courage, and what it means to show up — exploring ideas that inspire us to keep going and growing stronger.
-
-<a href="./docs/light/index.html" target="_blank">A Collection of Light </a> : Brighter thoughts for darker days.
-
----
-
-## Disclaimer
-
-The content expressed on this website, including but not limited to articles, tutorials, blog posts, technical experiments, comments, and other materials, are solely the personal opinions of the contributor(s) and do not represent or reflect the views, positions, technology, or policies of their respective employers, affiliated organizations, or the industries in which they work.
-
-Any information provided should not be construed as professional advice or as an official statement from any organization with which contributors may be associated. All content is provided for informational purposes only. Readers should exercise their own judgment when considering the views and opinions presented here.
-
----
-
-## Contact
-
-If you have any questions and/or feedback, feel free to reach out at **[brainsesh@gmail.com](mailto:brainsesh@gmail.com)**.
-
----
-
-<div align="left" style="font-size: 0.8rem;">
-  The goal is simple. Better than yesterday. 
-</div>
-
-
+Writing and images: [CC BY 4.0](./LICENSE). Code: free to reuse.

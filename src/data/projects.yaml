@@ -1,0 +1,13 @@
+# Projects shown on /projects/. The page and its nav link stay hidden while this list is empty.
+# Copy the example below, remove the leading "# ", and fill it in.
+#
+# - id: my-project            # unique, lowercase, no spaces
+#   title: My project
+#   description: One or two sentences on what it does and why it matters.
+#   role: Creator             # Creator, Maintainer, Contributor, Lead...
+#   year: 2026
+#   url: https://example.com  # optional: demo or write-up
+#   repo: https://github.com/you/my-project   # optional
+#   topic: ai-ml              # optional: ai-ml, finance, healthcare, essays
+#   tags: [agents, python]
+[]

@@ -1,0 +1,163 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { TOPICS } from '../site.config';
+import { getPosts, postUrl, formatDate } from '../lib/posts';
+
+const posts = await getPosts();
+const reviews = posts.filter((p) => p.data.source && p.data.type === 'paper-review');
+const notes = posts.filter((p) => p.data.source && p.data.type !== 'paper-review');
+const reading = await getCollection('reading');
+
+const SHELVES = [
+  { key: 'reading-now', label: 'Reading now' },
+  { key: 'queue', label: 'Up next' },
+  { key: 'favorites', label: 'All-time favorites' },
+  { key: 'books', label: 'Books' },
+  { key: 'newsletters', label: 'Newsletters' },
+  { key: 'podcasts', label: 'Podcasts' },
+] as const;
+const shelves = SHELVES.map((s) => ({ ...s, items: reading.filter((r) => r.data.shelf === s.key) })).filter(
+  (s) => s.items.length > 0,
+);
+---
+
+<Base title="Papers & reading" description="The papers I have reviewed, the talks I have taken notes on, and what I am reading next.">
+  <div class="wrap page">
+    <div class="col">
+      <header class="page-head">
+        <h1 class="page-title">Papers & reading</h1>
+        <p class="page-intro">The papers I've reviewed, the talks and lectures I've taken notes on, and what I'm reading next.</p>
+      </header>
+
+      <section aria-labelledby="reviews-h">
+        <h2 id="reviews-h" class="section-heading"><span>Paper reviews</span></h2>
+        {
+          reviews.length > 0 ? (
+            <ol class="shelf">
+              {reviews.map((p) => (
+                <li style={`--t: ${TOPICS[p.data.topic].color}`}>
+                  <p class="item-title">
+                    <a href={p.data.source!.url}>{p.data.source!.title}</a>
+                  </p>
+                  <p class="item-meta">
+                    {[p.data.source!.authors, p.data.source!.venue, p.data.source!.year].filter(Boolean).join(', ')}
+                  </p>
+                  <p class="item-link">
+                    <a href={postUrl(p)}>My review: {p.data.title}</a>
+                    <span class="when">{formatDate(p.data.pubDate)}</span>
+                  </p>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p class="empty-note">No paper reviews yet.</p>
+          )
+        }
+      </section>
+
+      {
+        notes.length > 0 && (
+          <section aria-labelledby="notes-h" class="gap">
+            <h2 id="notes-h" class="section-heading">
+              <span>Talk & lecture notes</span>
+            </h2>
+            <ol class="shelf">
+              {notes.map((p) => (
+                <li style={`--t: ${TOPICS[p.data.topic].color}`}>
+                  <p class="item-title">
+                    <a href={p.data.source!.url}>{p.data.source!.title}</a>
+                  </p>
+                  <p class="item-meta">
+                    {[p.data.source!.authors, p.data.source!.venue, p.data.source!.year].filter(Boolean).join(', ')}
+                  </p>
+                  <p class="item-link">
+                    <a href={postUrl(p)}>My notes: {p.data.title}</a>
+                    <span class="when">{formatDate(p.data.pubDate)}</span>
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )
+      }
+
+      {
+        shelves.map((s) => (
+          <section class="gap" aria-labelledby={`${s.key}-h`}>
+            <h2 id={`${s.key}-h`} class="section-heading">
+              <span>{s.label}</span>
+            </h2>
+            <ol class="shelf">
+              {s.items.map(({ data: r }) => (
+                <li style={r.topic ? `--t: ${TOPICS[r.topic].color}` : undefined}>
+                  <p class="item-title">
+                    <a href={r.url}>{r.title}</a>
+                  </p>
+                  {(r.authors || r.year) && <p class="item-meta">{[r.authors, r.year].filter(Boolean).join(', ')}</p>}
+                  {r.note && <p class="item-note">{r.note}</p>}
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .gap {
+    margin-top: 3.5rem;
+  }
+  .shelf {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .shelf li {
+    padding: 1rem 0 1rem 1.25rem;
+    border-left: 3px solid var(--t, var(--rule-strong));
+  }
+  .shelf li + li {
+    margin-top: 0.75rem;
+  }
+  .shelf p {
+    margin: 0;
+  }
+  .item-title {
+    font-family: var(--serif);
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .item-title a {
+    text-decoration: none;
+  }
+  .item-title a:hover {
+    text-decoration: underline;
+  }
+  .item-meta {
+    color: var(--ink-3);
+    font-size: 0.9375rem;
+    margin-top: 0.2rem !important;
+  }
+  .item-note {
+    color: var(--ink-2);
+    margin-top: 0.4rem !important;
+  }
+  .item-link {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    margin-top: 0.5rem !important;
+    font-size: 0.9375rem;
+  }
+  .item-link a {
+    color: var(--t, var(--accent));
+    font-weight: 500;
+  }
+  .when {
+    color: var(--ink-3);
+  }
+</style>

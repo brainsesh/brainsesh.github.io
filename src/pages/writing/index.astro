@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { TOPICS, type TopicKey } from '../../site.config';
+import { getPosts, tagCounts, topicUrl } from '../../lib/posts';
+
+const posts = await getPosts();
+const tags = tagCounts(posts);
+const topicKeys = (Object.keys(TOPICS) as TopicKey[]).filter((k) => posts.some((p) => p.data.topic === k));
+---
+
+<Base title="Writing" description="Everything I have published: paper reviews, engineering guides, talk notes and essays.">
+  <div class="wrap page"><div class="col">
+    <header class="page-head">
+      <h1 class="page-title">Writing</h1>
+      <p class="page-intro">Everything I've published, newest first. {posts.length} pieces so far.</p>
+      <nav class="filters" aria-label="Browse by topic">
+        <span class="filters-label">Browse by topic</span>
+        {
+          topicKeys.map((k) => (
+            <a class="topic-mark" style={`--t: ${TOPICS[k].color}`} href={topicUrl(k)}>
+              {TOPICS[k].label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    <div class="list">
+      <PostList posts={posts} byYear />
+    </div>
+
+    {
+      tags.length > 0 && (
+        <section class="tags" aria-labelledby="tags-h">
+          <h2 id="tags-h" class="section-heading">
+            <span>Browse by tag</span>
+          </h2>
+          <ul class="tag-list">
+            {tags.map((t) => (
+              <li>
+                <a class="tag" href={`/tags/${t.slug}/`}>
+                  {t.tag} <span class="n">{t.count}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </div></div>
+</Base>
+
+<style>
+  .page-head {
+    margin-bottom: 2.5rem;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.25rem;
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+  }
+  .filters-label {
+    color: var(--ink-3);
+  }
+  .tags {
+    margin-top: 4rem;
+  }
+  .n {
+    color: var(--ink-3);
+    margin-left: 0.15rem;
+  }
+</style>

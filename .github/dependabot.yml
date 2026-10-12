@@ -1,0 +1,20 @@
+# Opens one grouped pull request a month with dependency updates.
+# The build runs on each one; if it is green, merge it. See RUNBOOK.md > Monthly.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      all-npm:
+        patterns: ['*']
+        update-types: ['minor', 'patch']
+    open-pull-requests-limit: 3
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      all-actions:
+        patterns: ['*']

@@ -1,0 +1,13 @@
+# Your reading list, shown on /papers/ under your own paper reviews.
+# Shelves: reading-now, queue, favorites, books, newsletters, podcasts
+# Copy the example, remove the leading "# ", fill it in. Order in this file is the order on the page.
+#
+# - id: attention-is-all-you-need   # unique, lowercase, no spaces
+#   shelf: favorites
+#   title: Attention Is All You Need
+#   authors: Vaswani et al.
+#   year: 2017
+#   url: https://arxiv.org/abs/1706.03762
+#   note: One line on why it is worth reading.
+#   topic: ai-ml
+[]
