@@ -1,0 +1,424 @@
+---
+/**
+ * The canonical article template. Every post uses it, top to bottom:
+ *
+ *   1. Topic and type          (from frontmatter: topic, type)
+ *   2. Title and subtitle      (title, description)
+ *   3. Byline                  (author, pubDate, updatedDate, reading time)
+ *   4. Topic note              (finance and healthcare only, set in site.config.ts)
+ *   5. In brief + source card  (tldr, source)
+ *   6. Contents                (from the ## and ### headings; set toc: false to hide)
+ *   7. Body                    (the Markdown)
+ *   8. Key takeaways           (takeaways)
+ *   9. Tags, cite, edit link
+ *  10. Author, newsletter, related posts
+ */
+import 'katex/dist/katex.min.css';
+import { Image } from 'astro:assets';
+import type { MarkdownHeading } from 'astro';
+import Base from './Base.astro';
+import SourceCard from '../components/SourceCard.astro';
+import Toc from '../components/Toc.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PostList from '../components/PostList.astro';
+import portrait from '../assets/lavanya-square.jpg';
+import { SITE, TOPICS, POST_TYPES } from '../site.config';
+import { type Post, formatDate, minutesRead, postUrl, tagUrl, topicUrl } from '../lib/posts';
+
+interface Props {
+  post: Post;
+  headings: MarkdownHeading[];
+  related: Post[];
+}
+const { post, headings, related } = Astro.props;
+const d = post.data;
+const topic = TOPICS[d.topic];
+const url = new URL(postUrl(post), Astro.site).href;
+const ogImage = `/og/${post.id}.png`;
+const minutes = minutesRead(post);
+const editUrl = post.filePath ? `${SITE.repo}/edit/main/${post.filePath}` : SITE.repo;
+const showToc = d.toc && headings.filter((h) => h.depth <= 3).length >= 3;
+
+const citeKey = `${SITE.name.split(' ').at(-1)!.toLowerCase()}${d.pubDate.getUTCFullYear()}${post.id.split('-')[0]}`;
+const bibtex = `@misc{${citeKey},
+  author = {${SITE.name}},
+  title = {${d.title}},
+  year = {${d.pubDate.getUTCFullYear()}},
+  howpublished = {\\url{${url}}}
+}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.pubDate.toISOString(),
+  dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+  image: new URL(ogImage, Astro.site).href,
+  url,
+  mainEntityOfPage: url,
+  keywords: d.tags.join(', '),
+  articleSection: topic.label,
+  author: {
+    '@type': 'Person',
+    name: SITE.name,
+    url: new URL('/about/', Astro.site).href,
+    sameAs: Object.values(SITE.social).filter(Boolean),
+  },
+  ...(d.source && {
+    about: { '@type': d.source.kind === 'paper' ? 'ScholarlyArticle' : 'CreativeWork', name: d.source.title, url: d.source.url },
+  }),
+};
+---
+
+<Base
+  title={d.title}
+  description={d.description}
+  image={ogImage}
+  type="article"
+  publishedTime={d.pubDate}
+  modifiedTime={d.updatedDate}
+  canonical={d.canonical}
+  noindex={d.draft}
+  jsonLd={jsonLd}
+>
+  <article class="article wrap" style={`--t: ${topic.color}`}>
+    <header class="head">
+      <p class="kicker">
+        <a class="topic-mark" href={topicUrl(d.topic)}>{topic.label}</a>
+        <span>{POST_TYPES[d.type]}</span>
+        {d.draft && <span class="draft">Draft, not published</span>}
+      </p>
+      <h1 class="title">{d.title}</h1>
+      <p class="dek">{d.description}</p>
+      <div class="byline">
+        <Image src={portrait} alt="" width={80} height={80} class="avatar" loading="eager" />
+        <div>
+          <a href="/about/" class="author">{SITE.name}</a>
+          <p class="dates">
+            <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate)}</time>
+            {
+              d.updatedDate && (
+                <span>
+                  Updated <time datetime={d.updatedDate.toISOString()}>{formatDate(d.updatedDate)}</time>
+                </span>
+              )
+            }
+            <span>{minutes} min read</span>
+          </p>
+        </div>
+      </div>
+      {topic.disclaimer && <p class="topic-note">{topic.disclaimer}</p>}
+    </header>
+
+    <div class:list={['layout', { 'has-toc': showToc }]}>
+      {
+        showToc && (
+          <div class="rail">
+            <Toc headings={headings} />
+          </div>
+        )
+      }
+
+      <div class="main">
+        <SourceCard tldr={d.tldr} source={d.source} />
+
+        <div class="prose" data-pagefind-body>
+          <slot />
+        </div>
+
+        {
+          d.takeaways && d.takeaways.length > 0 && (
+            <section class="takeaways" aria-labelledby="takeaways-h">
+              <h2 id="takeaways-h">Key takeaways</h2>
+              <ul>
+                {d.takeaways.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        <footer class="post-foot">
+          {
+            d.tags.length > 0 && (
+              <ul class="tag-list" aria-label="Tags">
+                {d.tags.map((t) => (
+                  <li>
+                    <a class="tag" href={tagUrl(t)}>
+                      {t}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+          <div class="foot-links">
+            {
+              d.topic !== 'essays' && (
+                <details class="cite">
+                  <summary>Cite this article</summary>
+                  <pre>{bibtex}</pre>
+                </details>
+              )
+            }
+            <a href={editUrl}>Suggest an edit</a>
+            <a href={`mailto:${SITE.email}?subject=${encodeURIComponent(`About: ${d.title}`)}`}>Send feedback</a>
+          </div>
+        </footer>
+
+        <section class="author-box" aria-label="About the author">
+          <Image src={portrait} alt={`Portrait of ${SITE.name}`} width={144} height={144} class="author-photo" />
+          <div>
+            <p class="author-name">Written by {SITE.name}</p>
+            <p class="author-bio">
+              {SITE.role}. I write long-form explainers on AI research and engineering, and on AI in finance and
+              healthcare.{' '}<a href="/about/">More about me</a>.
+            </p>
+          </div>
+        </section>
+
+        <Newsletter variant="inline" heading={`Liked this? Get the next one by email.`} />
+      </div>
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="related" aria-labelledby="related-h">
+          <h2 id="related-h" class="section-heading">
+            <span>Keep reading</span>
+            <a href="/writing/">All writing</a>
+          </h2>
+          <PostList posts={related} />
+        </section>
+      )
+    }
+  </article>
+</Base>
+
+<script>
+  // Add a "#" link to each section heading so readers can share a direct link.
+  document.querySelectorAll<HTMLElement>('.prose h2[id], .prose h3[id]').forEach((h) => {
+    const a = document.createElement('a');
+    a.href = `#${h.id}`;
+    a.className = 'heading-anchor';
+    a.setAttribute('aria-label', `Link to section: ${h.textContent}`);
+    a.textContent = '#';
+    h.prepend(a);
+  });
+</script>
+
+<style>
+  .article {
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  .head {
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin: 0 0 1rem;
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+  .draft {
+    color: var(--topic-health);
+    font-weight: 500;
+  }
+  .title {
+    font-family: var(--serif);
+    font-size: var(--step-4);
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin: 0;
+    font-variation-settings: 'opsz' 72;
+    text-wrap: balance;
+  }
+  .dek {
+    font-family: var(--serif);
+    font-size: 1.3125rem;
+    line-height: 1.45;
+    color: var(--ink-2);
+    margin: 0.85rem 0 0;
+    font-style: italic;
+    font-variation-settings: 'opsz' 24;
+    text-wrap: pretty;
+  }
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    font-size: 0.9375rem;
+  }
+  .byline :global(.avatar) {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .author {
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .author:hover {
+    text-decoration: underline;
+  }
+  .dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    margin: 0.1rem 0 0;
+    color: var(--ink-3);
+  }
+  .topic-note {
+    margin: 1.5rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+    padding: 0.75rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--t) 35%, var(--rule));
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--t) 5%, var(--paper));
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, var(--measure));
+    gap: 2rem 4rem;
+  }
+  .main {
+    min-width: 0;
+    display: grid;
+    gap: 2.5rem;
+    align-content: start;
+  }
+  .main > .prose {
+    margin-top: -0.25rem;
+  }
+  @media (min-width: 1120px) {
+    .layout.has-toc {
+      grid-template-columns: minmax(0, var(--measure)) 15rem;
+    }
+    .rail {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .rail > :global(.toc) {
+      position: sticky;
+      top: 2rem;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+    .main {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  .takeaways {
+    border-top: 3px solid var(--t);
+    background: var(--paper-2);
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .takeaways h2 {
+    font-family: var(--serif);
+    font-size: var(--step-2);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    font-variation-settings: 'opsz' 32;
+  }
+  .takeaways ul {
+    margin: 0;
+    padding-left: 1.2em;
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  .takeaways li + li {
+    margin-top: 0.5rem;
+  }
+  .takeaways li::marker {
+    color: var(--t);
+  }
+
+  .post-foot {
+    display: grid;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .foot-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem 1.5rem;
+    color: var(--ink-3);
+  }
+  .foot-links a,
+  .cite summary {
+    color: var(--ink-2);
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+  .foot-links a:hover,
+  .cite summary:hover {
+    color: var(--ink);
+  }
+  .cite {
+    flex-basis: 100%;
+    order: 3;
+  }
+  .cite[open] summary {
+    margin-bottom: 0.5rem;
+  }
+  .cite pre {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .author-box {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--rule);
+  }
+  .author-box :global(.author-photo) {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: none;
+  }
+  .author-name {
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+  .author-bio {
+    margin: 0;
+    color: var(--ink-2);
+  }
+  .author-bio a {
+    color: var(--accent);
+  }
+
+  .related {
+    margin-top: 5rem;
+    max-width: 52rem;
+  }
+</style>

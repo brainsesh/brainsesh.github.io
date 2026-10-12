@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Search" description="Search everything on the site.">
+  <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <div class="wrap page">
+    <div class="col">
+      <header class="page-head">
+        <h1 class="page-title">Search</h1>
+        <p class="page-intro">Search the full text of every article.</p>
+      </header>
+      <div id="search"></div>
+      <noscript><p class="empty-note">Search needs JavaScript. You can browse every piece on the <a href="/writing/">writing page</a>.</p></noscript>
+      {
+        import.meta.env.DEV && (
+          <p class="empty-note">
+            Search works on the built site only. Run <code>npm run build && npm run preview</code> to try it locally.
+          </p>
+        )
+      }
+    </div>
+  </div>
+</Base>
+
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.PagefindUI) return;
+    new PagefindUI({ element: '#search', showSubResults: true, showImages: false, autofocus: true });
+  });
+</script>
+
+<style is:global>
+  #search {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--ink);
+    --pagefind-ui-background: var(--paper);
+    --pagefind-ui-border: var(--rule-strong);
+    --pagefind-ui-tag: var(--paper-2);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 6px;
+    --pagefind-ui-font: var(--sans);
+  }
+  #search .pagefind-ui__result-title {
+    font-family: var(--serif);
+  }
+  #search mark {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: inherit;
+  }
+</style>

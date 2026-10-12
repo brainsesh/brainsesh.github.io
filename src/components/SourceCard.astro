@@ -1,0 +1,101 @@
+---
+/** The box at the top of an article: the piece in brief, plus the paper or talk it is about. */
+interface Props {
+  tldr?: string;
+  source?: {
+    kind: 'paper' | 'talk' | 'lecture' | 'book' | 'article';
+    title: string;
+    authors?: string;
+    venue?: string;
+    year?: number;
+    url: string;
+    code?: string;
+  };
+}
+const { tldr, source } = Astro.props;
+const kindLabel = { paper: 'The paper', talk: 'The talk', lecture: 'The lecture', book: 'The book', article: 'The article' };
+const openLabel = { paper: 'Read the paper', talk: 'Watch the talk', lecture: 'Watch the lecture', book: 'See the book', article: 'Read the article' };
+const byline = source ? [source.authors, source.venue, source.year].filter(Boolean).join(', ') : '';
+---
+
+{
+  (tldr || source) && (
+    <aside class="source-card" aria-label="In brief">
+      {tldr && (
+        <div class="tldr">
+          <p class="label">In brief</p>
+          <p class="tldr-text">{tldr}</p>
+        </div>
+      )}
+      {source && (
+        <div class="source">
+          <p class="label">{kindLabel[source.kind]}</p>
+          <p class="source-title">
+            <a href={source.url}>{source.title}</a>
+          </p>
+          {byline && <p class="byline">{byline}</p>}
+          <p class="links">
+            <a href={source.url}>{openLabel[source.kind]}</a>
+            {source.code && <a href={source.code}>Code</a>}
+          </p>
+        </div>
+      )}
+    </aside>
+  )
+}
+
+<style>
+  .source-card {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--t, var(--accent));
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: var(--paper-2);
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .label {
+    font-weight: 600;
+    color: var(--t, var(--accent));
+    margin: 0 0 0.3rem;
+  }
+  .tldr-text {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .tldr + .source {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+  }
+  .source-title {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .source-title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .source-title a:hover {
+    text-decoration: underline;
+  }
+  .byline {
+    margin: 0.25rem 0 0;
+    color: var(--ink-2);
+  }
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin: 0.6rem 0 0;
+  }
+  .links a {
+    color: var(--accent);
+    font-weight: 500;
+    text-underline-offset: 0.2em;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { TOPICS } from '../site.config';
+
+const projects = (await getCollection('projects')).sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<Base title="Projects" description="Things I have built and contributed to." noindex={projects.length === 0}>
+  <div class="wrap page">
+    <div class="col">
+      <header class="page-head">
+        <h1 class="page-title">Projects</h1>
+        <p class="page-intro">Things I've built and contributed to.</p>
+      </header>
+      {
+        projects.length === 0 ? (
+          <p class="empty-note">No projects listed yet. Add one in src/data/projects.yaml and this page appears in the menu.</p>
+        ) : (
+          <ul class="projects">
+            {projects.map(({ data: p }) => (
+              <li style={p.topic ? `--t: ${TOPICS[p.topic].color}` : undefined}>
+                <h2>
+                  <a href={p.url ?? p.repo}>{p.title}</a>
+                </h2>
+                <p class="meta">
+                  {p.role && <span>{p.role}</span>}
+                  {p.year && <span>{p.year}</span>}
+                  {p.topic && <span class="topic-mark">{TOPICS[p.topic].label}</span>}
+                </p>
+                <p class="desc">{p.description}</p>
+                <p class="links">
+                  {p.url && <a href={p.url}>Visit</a>}
+                  {p.repo && <a href={p.repo}>Source code</a>}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .projects {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 2.25rem 2.5rem;
+  }
+  li {
+    border-top: 3px solid var(--t, var(--rule-strong));
+    padding-top: 1rem;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: var(--step-2);
+    font-weight: 600;
+    margin: 0;
+  }
+  h2 a {
+    text-decoration: none;
+  }
+  h2 a:hover {
+    text-decoration: underline;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    color: var(--ink-3);
+    font-size: var(--step--1);
+    margin: 0.4rem 0 0;
+  }
+  .desc {
+    color: var(--ink-2);
+    margin: 0.6rem 0 0;
+  }
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin: 0.75rem 0 0;
+    font-size: 0.9375rem;
+  }
+  .links a {
+    color: var(--accent);
+    font-weight: 500;
+  }
+</style>

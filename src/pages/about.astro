@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import portrait from '../assets/lavanya.jpg';
+import { SITE, TOPICS, type TopicKey } from '../site.config';
+import { getPosts, topicUrl } from '../lib/posts';
+
+const posts = await getPosts();
+const links = [
+  { href: SITE.social.linkedin, label: 'LinkedIn' },
+  { href: SITE.social.github, label: 'GitHub' },
+  { href: SITE.social.x, label: 'X' },
+  { href: SITE.social.scholar, label: 'Google Scholar' },
+].filter((l) => l.href);
+---
+
+<Base title="About" description={`About ${SITE.name}: ${SITE.role.toLowerCase()} writing about AI, finance and healthcare.`}>
+  <div class="wrap page">
+    <div class="about">
+      <Image src={portrait} alt={`Portrait of ${SITE.name}`} width={360} height={450} class="photo" loading="eager" />
+      <div class="text">
+        <h1 class="page-title">Hi, I'm Lavanya.</h1>
+
+        <!--
+          EDIT ME: this is the most-read page after the home page. Add, in plain sentences:
+          - what you do today (role, team or field), if you are comfortable sharing it
+          - your background: education, past work, what drew you to ML
+          - talks, publications or projects worth linking
+          Keep the first paragraph to two or three sentences.
+        -->
+        <div class="prose">
+          <p>
+            I'm a student of technology and a practitioner of machine learning, artificial intelligence and data
+            science.
+          </p>
+          <p>
+            This site began as <strong>brainsesh</strong>, short for brain-session: a space dedicated to learning,
+            growth, reflection and inspiration. It still is. I write to make ideas in AI, machine learning,
+            mathematics and applied economics accessible and fascinating, and to share technical perspectives,
+            thought experiments and what I learn along the way. The newsletter keeps the brainsesh name.
+          </p>
+
+          <h2>What I write about</h2>
+          <ul class="topic-list">
+            {
+              (Object.keys(TOPICS) as TopicKey[]).map((k) => (
+                <li style={`--t: ${TOPICS[k].color}`}>
+                  <a class="topic-mark" href={topicUrl(k)}>
+                    {TOPICS[k].label}
+                  </a>
+                  <span>{TOPICS[k].description}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p>
+            Most pieces are one of four kinds: <a href="/papers/">paper reviews</a>, deep dives into a model or
+            system, practical engineering guides, and notes from talks and lectures. There are {posts.length} so far,
+            all on the <a href="/writing/">writing page</a>.
+          </p>
+
+          <h2>Get in touch</h2>
+          <p>
+            Questions and feedback are welcome at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+            {
+              links.length > 0 && (
+                <>
+                  {' '}You can also find me on{' '}
+                  {links.map((l, i) => (
+                    <>
+                      <a href={l.href}>{l.label}</a>
+                      {i < links.length - 2 ? ', ' : i === links.length - 2 ? ' and ' : '.'}
+                    </>
+                  ))}
+                </>
+              )
+            }
+          </p>
+
+          <h2>Disclaimer</h2>
+          <p class="fine">
+            The content on this website, including articles, tutorials, technical experiments and other materials,
+            reflects only my personal opinions. It does not represent the views, positions, technology or policies
+            of my employers, affiliated organizations, or the industries in which I work. Nothing here is
+            professional advice or an official statement from any organization I am associated with. All content is
+            for informational purposes only, and readers should use their own judgment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, var(--measure));
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .about :global(.photo) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+    position: sticky;
+    top: 2rem;
+  }
+  .prose {
+    margin-top: 1.5rem;
+  }
+  .topic-list {
+    list-style: none;
+    padding: 0 !important;
+  }
+  .topic-list li {
+    display: grid;
+    gap: 0.15rem;
+    font-size: 1.0625rem;
+  }
+  .topic-list li + li {
+    margin-top: 0.9rem;
+  }
+  .topic-list .topic-mark {
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    text-decoration: none;
+    color: var(--t);
+  }
+  .topic-list span {
+    color: var(--ink-2);
+  }
+  .fine {
+    font-size: 1rem;
+    color: var(--ink-2);
+  }
+  @media (max-width: 760px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+    .about :global(.photo) {
+      position: static;
+      width: 9rem;
+    }
+  }
+</style>

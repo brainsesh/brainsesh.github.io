@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, tagCounts, tagSlug, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return tagCounts(posts).map(({ slug, tag }) => ({
+    params: { tag: slug },
+    props: { tag, posts: posts.filter((p) => p.data.tags.some((t) => tagSlug(t) === slug)) },
+  }));
+}
+
+const { tag, posts } = Astro.props as { tag: string; posts: Post[] };
+---
+
+<Base title={`Tagged “${tag}”`} description={`Writing tagged ${tag}.`}>
+  <div class="wrap page">
+    <div class="col">
+      <header class="page-head">
+        <p class="crumb"><a href="/writing/">Writing</a></p>
+        <h1 class="page-title">Tagged “{tag}”</h1>
+        <p class="page-intro">{posts.length === 1 ? '1 piece' : `${posts.length} pieces`}</p>
+      </header>
+      <PostList posts={posts} />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .crumb {
+    margin: 0 0 0.5rem;
+    font-size: 0.9375rem;
+  }
+  .crumb a {
+    color: var(--ink-3);
+  }
+</style>

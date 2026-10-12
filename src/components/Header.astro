@@ -1,0 +1,173 @@
+---
+import { NAV, SITE } from '../site.config';
+import fs from 'node:fs';
+
+const path = Astro.url.pathname;
+// Hide the Projects link until src/data/projects.yaml has at least one entry.
+const hasProjects = /^\s*-\s+id:/m.test(fs.readFileSync('src/data/projects.yaml', 'utf8'));
+const items = NAV.filter((item) => item.href !== '/projects/' || hasProjects);
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="wrap bar">
+    <a class="wordmark" href="/" aria-label={`${SITE.name}, home`}>{SITE.name}</a>
+    <nav aria-label="Main">
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="tools">
+      <a class="icon-button" href="/search/" aria-label="Search" title="Search">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
+      </a>
+      <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch to dark theme" title="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"></path></svg>
+        <svg class="moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    const root = document.documentElement;
+    const current = () =>
+      root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const label = () =>
+      btn.setAttribute('aria-label', current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    label();
+    btn.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('theme', next);
+      } catch {}
+      label();
+    });
+  })();
+</script>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 4rem;
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.1875rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 24;
+    white-space: nowrap;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem;
+    justify-content: flex-end;
+  }
+  nav a {
+    display: block;
+    padding: 0.4rem 0.7rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  nav a:hover {
+    color: var(--ink);
+    background: var(--paper-2);
+  }
+  nav a[aria-current='page'] {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.45em;
+  }
+  .tools {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .icon-button {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: none;
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+  .icon-button:hover {
+    color: var(--ink);
+    background: var(--paper-2);
+  }
+  .moon {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .sun {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .moon {
+    display: block;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .sun {
+      display: none;
+    }
+    :global(:root:not([data-theme='light'])) .moon {
+      display: block;
+    }
+  }
+
+  /* Phones: name and tools on one row, nav scrolls sideways underneath. */
+  @media (max-width: 760px) {
+    .bar {
+      grid-template-columns: 1fr auto;
+      grid-template-areas: 'name tools' 'nav nav';
+      row-gap: 0;
+      padding-top: 0.5rem;
+    }
+    .wordmark {
+      grid-area: name;
+    }
+    .tools {
+      grid-area: tools;
+    }
+    nav {
+      grid-area: nav;
+      margin-inline: calc(-1 * var(--gutter));
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav ul {
+      justify-content: flex-start;
+      padding: 0.25rem calc(var(--gutter) - 0.7rem) 0.5rem;
+    }
+  }
+</style>
