@@ -10,6 +10,12 @@ const social = [
   { href: SITE.social.scholar, label: 'Google Scholar' },
   { href: '/rss.xml', label: 'RSS' },
 ].filter((l) => l.href);
+const footerTopics = (Object.keys(TOPICS) as TopicKey[])
+  .filter((key) => key !== 'finance' && key !== 'healthcare')
+  .map((key) => ({
+    key,
+    label: key === 'ai-ml' ? 'Applied AI' : TOPICS[key].label,
+  }));
 ---
 
 <footer class="site-footer">
@@ -22,9 +28,9 @@ const social = [
       <p class="label">Topics</p>
       <ul>
         {
-          (Object.keys(TOPICS) as TopicKey[]).map((key) => (
+          footerTopics.map(({ key, label }) => (
             <li>
-              <a href={`/topics/${key}/`}>{TOPICS[key].label}</a>
+              <a href={`/topics/${key}/`}>{label}</a>
             </li>
           ))
         }
