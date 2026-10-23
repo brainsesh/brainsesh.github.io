@@ -36,7 +36,13 @@ const social = [
         {
           social.map((l) => (
             <li>
-              <a href={l.href}>{l.label}</a>
+              <a
+                href={l.href}
+                target={l.label === 'LinkedIn' ? '_blank' : undefined}
+                rel={l.label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
+              >
+                {l.label}
+              </a>
             </li>
           ))
         }

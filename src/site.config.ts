@@ -16,7 +16,7 @@ export const SITE = {
   initials: 'LB',
   title: 'Lavanya Basavaraju',
   description:
-    'Long-form explainers on AI research and the engineering behind it, and on how AI is changing finance and healthcare.',
+    'Exploring how AI works and how research becomes real-world systems, through paper reviews, practical guides, and notes from talks.',
   role: 'Machine learning practitioner',
   email: 'brainsesh@gmail.com',
   locale: 'en-US',
@@ -113,9 +113,8 @@ export const POST_TYPE_KEYS = Object.keys(POST_TYPES) as [PostType, ...PostType[
 
 /** Top navigation. Pages with no content yet hide themselves. */
 export const NAV = [
-  { href: '/writing/', label: 'Writing' },
-  { href: '/papers/', label: 'Papers' },
-  { href: '/projects/', label: 'Projects' },
+  { href: '/writing/', label: 'Articles' },
+  { href: '/papers/', label: 'Technical Concepts' },
   { href: '/about/', label: 'About' },
-  { href: '/newsletter/', label: 'Newsletter' },
+  { href: '/newsletter/', label: 'Subscribe' },
 ] as const;
