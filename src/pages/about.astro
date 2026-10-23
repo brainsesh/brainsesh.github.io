@@ -6,7 +6,8 @@ import { SITE, TOPICS, type TopicKey } from '../site.config';
 import { getPosts, topicUrl } from '../lib/posts';
 
 const posts = await getPosts();
-const aboutTopics = (Object.keys(TOPICS) as TopicKey[])
+const aboutTopics: { label: string; description: string; color: string; href: string }[] =
+  (Object.keys(TOPICS) as TopicKey[])
   .filter((key) => key !== 'finance' && key !== 'healthcare')
   .map((key) => ({ ...TOPICS[key], href: topicUrl(key) }));
 aboutTopics.splice(1, 0, {
