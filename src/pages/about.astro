@@ -7,31 +7,26 @@ import { getPosts, topicUrl } from '../lib/posts';
 
 const posts = await getPosts();
 const links = [
-  { href: SITE.social.linkedin, label: 'LinkedIn' },
   { href: SITE.social.github, label: 'GitHub' },
   { href: SITE.social.x, label: 'X' },
   { href: SITE.social.scholar, label: 'Google Scholar' },
 ].filter((l) => l.href);
 ---
 
-<Base title="About" description={`About ${SITE.name}: ${SITE.role.toLowerCase()} writing about AI, finance and healthcare.`}>
+<Base title="About" description={`About ${SITE.name}: a machine learning practitioner exploring AI and data science.`}>
   <div class="wrap page">
     <div class="about">
-      <Image src={portrait} alt={`Portrait of ${SITE.name}`} width={360} height={450} class="photo" loading="eager" />
+      <div class="portrait">
+        <Image src={portrait} alt={`Portrait of ${SITE.name}`} width={360} height={450} class="photo" loading="eager" />
+        <a class="portrait-link" href={SITE.social.linkedin}>LinkedIn</a>
+      </div>
       <div class="text">
         <h1 class="page-title">Hi, I'm Lavanya.</h1>
 
-        <!--
-          EDIT ME: this is the most-read page after the home page. Add, in plain sentences:
-          - what you do today (role, team or field), if you are comfortable sharing it
-          - your background: education, past work, what drew you to ML
-          - talks, publications or projects worth linking
-          Keep the first paragraph to two or three sentences.
-        -->
         <div class="prose">
           <p>
-            I'm a student of technology and a practitioner of machine learning, artificial intelligence and data
-            science.
+            I'm a student of technology and a machine learning practitioner, exploring how AI and data science can
+            turn ideas into useful real-world systems.
           </p>
           <p>
             This site began as <strong>brainsesh</strong>, short for brain-session: a space dedicated to learning,
@@ -43,12 +38,12 @@ const links = [
           <h2>What I write about</h2>
           <ul class="topic-list">
             {
-              (Object.keys(TOPICS) as TopicKey[]).map((k) => (
-                <li style={`--t: ${TOPICS[k].color}`}>
-                  <a class="topic-mark" href={topicUrl(k)}>
-                    {TOPICS[k].label}
+              aboutTopics.map((topic) => (
+                <li style={`--t: ${topic.color}`}>
+                  <a class="topic-mark" href={topic.href}>
+                    {topic.label}
                   </a>
-                  <span>{TOPICS[k].description}</span>
+                  <span>{topic.description}</span>
                 </li>
               ))
             }
@@ -98,14 +93,22 @@ const links = [
     gap: clamp(2rem, 5vw, 4.5rem);
     align-items: start;
   }
+  .portrait {
+    position: sticky;
+    top: 2rem;
+  }
   .about :global(.photo) {
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     border-radius: var(--radius);
-    position: sticky;
-    top: 2rem;
+  }
+  .portrait-link {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-family: var(--sans);
+    font-size: var(--step-0);
   }
   .prose {
     margin-top: 1.5rem;
@@ -139,8 +142,10 @@ const links = [
     .about {
       grid-template-columns: 1fr;
     }
-    .about :global(.photo) {
+    .portrait {
       position: static;
+    }
+    .about :global(.photo) {
       width: 9rem;
     }
   }
