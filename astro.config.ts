@@ -19,7 +19,6 @@ export default defineConfig({
     '/docs/matformer': '/writing/matformer/',
     '/docs/software3': '/writing/software-3/',
     '/docs/async_api': '/writing/async-ai-systems/',
-    '/docs/arena': '/writing/step-into-the-arena/',
     '/docs/light': '/writing/a-collection-of-light/',
   },
 
