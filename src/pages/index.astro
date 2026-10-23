@@ -12,7 +12,18 @@ const featured = posts.find((p) => p.data.featured);
 const latest = posts.filter((p) => p !== featured).slice(0, 6);
 const count = (key: TopicKey) => posts.filter((p) => p.data.topic === key).length;
 const plural = (n: number) => (n === 1 ? '1 piece' : `${n} pieces`);
-const topicKeys = Object.keys(TOPICS) as TopicKey[];
+const topics: { key: TopicKey; label: string; description: string }[] = (
+  Object.keys(TOPICS) as TopicKey[]
+)
+  .filter((key) => key !== 'finance' && key !== 'healthcare')
+  .map((key) => ({
+    key,
+    label: key === 'ai-ml' ? 'Applied AI' : TOPICS[key].label,
+    description:
+      key === 'ai-ml'
+        ? 'How AI and machine learning move from research into useful systems: the models, data, engineering and evaluation that make them work.'
+        : TOPICS[key].description,
+  }));
 const READ_LABEL = {
   'paper-review': 'Read the review',
   'deep-dive': 'Read the deep dive',
@@ -95,14 +106,14 @@ const READ_LABEL = {
     <h2 id="topics-h" class="section-heading"><span>Topics</span></h2>
     <ul class="topics">
       {
-        topicKeys.map((key) => {
+        topics.map(({ key, label, description }) => {
           const n = count(key);
           return (
             <li style={`--t: ${TOPICS[key].color}`}>
               <h3>
-                <a href={topicUrl(key)}>{TOPICS[key].label}</a>
+                <a href={topicUrl(key)}>{label}</a>
               </h3>
-              <p>{TOPICS[key].description}</p>
+              <p>{description}</p>
               <p class="count">{n > 0 ? plural(n) : 'First pieces are in progress. Subscribe to get them.'}</p>
             </li>
           );

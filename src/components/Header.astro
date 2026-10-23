@@ -1,11 +1,7 @@
 ---
 import { NAV, SITE } from '../site.config';
-import fs from 'node:fs';
 
 const path = Astro.url.pathname;
-// Hide the Projects link until src/data/projects.yaml has at least one entry.
-const hasProjects = /^\s*-\s+id:/m.test(fs.readFileSync('src/data/projects.yaml', 'utf8'));
-const items = NAV.filter((item) => item.href !== '/projects/' || hasProjects);
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
@@ -16,7 +12,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     <nav aria-label="Main">
       <ul>
         {
-          items.map((item) => (
+          NAV.map((item) => (
             <li>
               <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
                 {item.label}
