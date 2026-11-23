@@ -113,8 +113,8 @@ export const POST_TYPE_KEYS = Object.keys(POST_TYPES) as [PostType, ...PostType[
 
 /** Top navigation. Pages with no content yet hide themselves. */
 export const NAV = [
-  { href: '/writing/', label: 'Articles' },
+  { href: '/writing/', label: 'All Articles' },
   { href: '/papers/', label: 'Technical Concepts' },
   { href: '/about/', label: 'About' },
-  { href: '/newsletter/', label: 'Subscribe' },
+  { href: '/newsletter/', label: 'Subscribe to Brainsesh' },
 ] as const;
